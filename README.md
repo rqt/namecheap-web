@@ -148,7 +148,7 @@ Add an IP address to the white-listed IPs. If name is not given, it is automatic
 
 Remove the IP from the white-listed IPs by its name.
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>
 
 
 ## Copyright
