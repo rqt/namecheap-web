@@ -27,7 +27,12 @@
   },
   "keywords": [
     "namecheap-web",
-    "rqt"
+    "rqt",
+    "domains",
+    "domain",
+    "namecheap",
+    "api",
+    "web"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
