@@ -1,10 +1,9 @@
 import { debuglog } from 'util'
-import { Session } from 'rqt'
 import bosom from 'bosom'
-import {
-  extractXsrf,
-} from './lib'
+import rqt from 'rqt'
 import Authenticator from './lib/Authenticator'
+import App from './lib/App'
+import { deepEqual } from './lib'
 
 const LOG = debuglog('@rqt/namecheap-web')
 
@@ -16,54 +15,6 @@ const getApHost = (S) => {
 }
 
 const USER_AGENT = 'Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com/rqt/namecheap-web'
-
-class PrivateApp {
-  /** @param {{cookies: *}} param */
-  constructor({
-    cookies,
-    host,
-    password, // needed for confirmations
-  }) {
-    // session.host = host // change host
-    const session = new Session({
-      host,
-    })
-    session.cookies = cookies
-    this._session = session
-    this.password = password
-  }
-  get session() {
-    return this._session
-  }
-  async getToken() {
-    const body = await this.session.rqt('/')
-    const token = extractXsrf(body)
-    debugger
-  }
-  async test() {
-    const { statusCode } = await this.session.aqt('/', {
-      justHeaders: true,
-    })
-    const res = statusCode == 200
-    return res
-  }
-  async whitelistIP(ipAddress) {
-    const name = `@rqt/namecheap ${new Date().toLocaleString()}`.replace(/:/g, '-')
-    const data = {
-      name,
-      ipAddress,
-      accountPassword: this.password,
-    }
-  }
-}
-
-// get whitelistedIpsPage() {
-//   return this.makeSettingsUrl('tools/apiaccess/whitelisted-ips')
-// }
-// makeSettingsUrl(loc) {
-//   const u = this.makeAppHostUrl(`/settings/${loc}`)
-//   return u
-// }
 
 /**
  * An API to namecheap.com via the web interface, with an ability to log in using 2-factor Auth and check Whois.
@@ -98,20 +49,16 @@ export default class NamecheapWeb {
 
       await authenticator.obtainSession()
       cookies = await authenticator.signIn()
-
-      if (this.settings.readSession) {
-        await saveSession(cookies, this.settings.sessionFile)
-      }
     }
 
-    // now make the app
     const apHost = getApHost(this.settings.sandbox)
-    this.privateApp = new PrivateApp({
+    this._app = new App({
       cookies,
       password,
       host: apHost,
+      userAgent: USER_AGENT,
     })
-    const works = await this.privateApp.test()
+    const works = await this._wrap(this._app.test())
     if (!works && force) {
       throw new Error('Could not authenticate.')
     }
@@ -119,6 +66,62 @@ export default class NamecheapWeb {
       await this.auth(username, password, phone, true)
     }
   }
+  async _saveSession(cookies) {
+    if (this.settings.readSession) {
+      await saveSession(cookies, this.settings.sessionFile)
+    }
+  }
+  /**
+   * Execute a method from the app and update cookies file if needed (to extend session).
+   * @private
+   */
+  async _wrap(p) {
+    const c = getAllowedCookies(this._app.session.cookies)
+    const res = await p
+    const c2 = getAllowedCookies(this._app.session.cookies)
+    try {
+      deepEqual(c, c2)
+    } catch ({ message }) {
+      LOG(message)
+      await this._saveSession(c2)
+    }
+    return res
+  }
+  /**
+   * Add an IP to white-listed IPs.
+   */
+  async whitelistIP(ip, name) {
+    await this._wrap(this._app.whitelistIP(ip, name))
+  }
+  /**
+   * Get the list of all whitelisted IP addresses from https://ap.www.namecheap.com/settings/tools/apiaccess/whitelisted-ips.
+   * @return {Promise.<{ Name: string, IpAddress: string, ModifyDate: Date }[]>}
+   */
+  async getWhitelistedIPList() {
+    const res = await this._wrap(this._app.getWhitelistedIPList())
+    return res
+  }
+  /**
+   * Get the public IP address using https://api.ipify.org.
+   */
+  static async LOOKUP_IP() {
+    const res = await rqt('https://api.ipify.org')
+    return res
+  }
+  /**
+   * Remote the IP from the white-listed IPs by its name.
+   */
+  async removeWhitelistedIP(name) {
+    await this._wrap(this._app.removeWhitelistedIP(name))
+  }
+}
+
+const getAllowedCookies = (cookies) => {
+  const keys = ['x-ncpl-auth', '.ncauth', 'SessionId', 'U']
+  return Object.keys(cookies).reduce((acc, k) => {
+    if (keys.includes(k)) return { ...acc, [k]: cookies[k] }
+    return acc
+  }, {})
 }
 
 const getSession = async (path) => {

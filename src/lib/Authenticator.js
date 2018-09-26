@@ -64,12 +64,7 @@ export default class Authenticator {
       throw new Error(`Unknown result (status code ${statusCode})`)
     }
     const { cookies } = this.session
-    const res = {
-      SessionId: cookies.SessionId,
-      '.ncauth': cookies['.ncauth'],
-      U: cookies['U'],
-    }
-    return res
+    return cookies
   }
   static get LOGIN_URL() {
     return '/myaccount/login-signup.aspx'

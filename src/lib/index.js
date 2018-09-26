@@ -74,3 +74,41 @@ export const extractXsrf = (body) => {
   const [, token] = res
   return token
 }
+
+/**
+ * Single level deep equal.
+ */
+export const deepEqual = (o1, o2) => {
+  const r = Object.keys(o1).reduce((acc, key) => {
+    const val = o1[key]
+    const val2 = o2[key]
+    if (!(key in o2)) {
+      const k = `-  ${key}`
+      const s = c(`${k}: ${val}`, 'red')
+      return [...acc, s]
+    } else if (val !== val2) {
+      const k = `-  ${key}`
+      const k2 = `+  ${key}`
+      const s = c(`${k}: ${val}`, 'red')
+      const s2 = c(`${k2}: ${val2}`, 'green')
+      return [...acc, s, s2]
+    }
+    return acc
+  }, [])
+  const r2 = Object.keys(o2).reduce((acc, key) => {
+    const val = o1[key]
+    if (!(key in o1)) {
+      const k = `+  ${key}`
+      const s = c(`${k}: ${val}`, 'green')
+      return [...acc, s]
+    }
+    return acc
+  }, r)
+  if (r2.length) {
+    const m = `
+{
+${r2.join('\n')}
+}`.trim()
+    throw new Error(m)
+  }
+}
