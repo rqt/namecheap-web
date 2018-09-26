@@ -1,0 +1,13 @@
+<types>
+  <type name="Options" desc="Options for the web client.">
+    <prop boolean name="sandbox" default="false">
+      Whether to use the `sandbox` version.
+    </prop>
+    <prop boolean name="readSession" default="false">
+      Read and store the cookies for the session from the local file.
+    </prop>
+    <prop string name="sessionFile" default=".namecheap-web.json">
+      If reading session, indicates the file where to store cookies.
+    </prop>
+  </type>
+</types>

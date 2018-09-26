@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import { debuglog } from 'util'
+import bosom from 'bosom'
 
 const LOG = debuglog('@rqt/namecheap-web')
 
@@ -11,6 +12,9 @@ const FIXTURE = resolve(__dirname, '../fixture')
 export default class Context {
   async _init() {
     LOG('init context')
+    const { username, password } = await bosom('.auth-sandbox.json')
+    this.username = username
+    this.password = password
   }
   /**
    * Example method.
@@ -29,5 +33,8 @@ export default class Context {
   }
   async _destroy() {
     LOG('destroy context')
+  }
+  async readCredentials() {
+
   }
 }

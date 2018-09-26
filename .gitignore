@@ -58,4 +58,5 @@ typings/
 .env
 
 .auth.json
+.auth-sandbox.json
 .namecheap-web.json

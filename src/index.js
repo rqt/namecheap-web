@@ -20,11 +20,19 @@ const USER_AGENT = 'Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com
  * An API to namecheap.com via the web interface, with an ability to log in using 2-factor Auth and check Whois.
  */
 export default class NamecheapWeb {
-  constructor({
-    sandbox,
-    readSession,
-    sessionFile = '.namecheap-web.json',
-  } = {}) {
+  /**
+   * Create an instance of a new client.
+   * @param {Options} options Options for the web client.
+ * @param {boolean} [options.sandbox=false] Whether to use the `sandbox` version. Default `false`.
+ * @param {boolean} [options.readSession=false] Read and store the cookies for the session from the local file. Default `false`.
+ * @param {string} [options.sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
+   */
+  constructor(options = {}) {
+    const {
+      sandbox,
+      readSession,
+      sessionFile = '.namecheap-web.json',
+    } = options
     this.settings = {
       sandbox,
       readSession,
@@ -135,3 +143,11 @@ const getSession = async (path) => {
 const saveSession = async (cookies, path) => {
   await bosom(path, cookies)
 }
+
+/* documentary types/options.xml */
+/**
+ * @typedef {Object} Options Options for the web client.
+ * @prop {boolean} [sandbox=false] Whether to use the `sandbox` version. Default `false`.
+ * @prop {boolean} [readSession=false] Read and store the cookies for the session from the local file. Default `false`.
+ * @prop {string} [sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
+ */
