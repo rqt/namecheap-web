@@ -46,6 +46,7 @@
     "bosom": "1.0.0",
     "erte": "1.1.4",
     "mismatch": "1.0.3",
-    "reloquent": "1.0.6"
+    "reloquent": "1.0.6",
+    "rqt": "3.0.0"
   }
 }
