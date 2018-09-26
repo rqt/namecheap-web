@@ -1,6 +1,6 @@
 {
   "name": "@rqt/namecheap-web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "An API to namecheap.com via the web interface, with an ability to log in using 2-factor Auth and check Whois.",
   "main": "build",
   "scripts": {
