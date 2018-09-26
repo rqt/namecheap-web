@@ -103,7 +103,7 @@ export default class NamecheapWeb {
   }
   /**
    * Get the list of all whitelisted IP addresses from https://ap.www.namecheap.com/settings/tools/apiaccess/whitelisted-ips.
-   * @return {Promise.<{ Name: string, IpAddress: string, ModifyDate: Date }[]>}
+   * @return {Promise.<WhitelistedIP[]>}
    */
   async getWhitelistedIPList() {
     const res = await this._wrap(this._app.getWhitelistedIPList())
@@ -117,7 +117,7 @@ export default class NamecheapWeb {
     return res
   }
   /**
-   * Remote the IP from the white-listed IPs by its name.
+   * Remove the IP from the white-listed IPs by its name.
    */
   async removeWhitelistedIP(name) {
     await this._wrap(this._app.removeWhitelistedIP(name))
@@ -150,4 +150,12 @@ const saveSession = async (cookies, path) => {
  * @prop {boolean} [sandbox=false] Whether to use the `sandbox` version. Default `false`.
  * @prop {boolean} [readSession=false] Read and store the cookies for the session from the local file. Default `false`.
  * @prop {string} [sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
+ */
+
+/* documentary types/ips.xml */
+/**
+ * @typedef {Object} WhitelistedIP A white-listed IP which can be used for API calls.
+ * @prop {string} Name The name of the IP.
+ * @prop {string} IpAddress The IP address.
+ * @prop {Date} ModifyDate The modification date.
  */

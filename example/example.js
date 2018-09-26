@@ -5,8 +5,9 @@ import bosom from 'bosom'
 (async () => {
   try {
     // 0. Read stored username and password from a local file.
-    const { username, password } = await bosom('.auth.json')
+    const { username, password } = await bosom('.auth-sandbox.json')
     const nw = new NamecheapWeb({
+      sandbox: true,
       readSession: true, // save cookies in a file.
     })
     // 1. Authenticate and create a session.
