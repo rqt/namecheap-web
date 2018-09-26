@@ -1,4 +1,6 @@
-<a rel="nofollow" href="https://affiliate.namecheap.com/?affId=70782"><img src="http://files.namecheap.com/graphics/linkus/728x90-1.gif" width="728" height="90" border="0" alt="Namecheap.com"></a># @rqt/namecheap-web
+<a rel="nofollow" href="https://affiliate.namecheap.com/?affId=70782"><img src="http://files.namecheap.com/graphics/linkus/728x90-1.gif" width="728" height="90" border="0" alt="Namecheap.com"></a>
+
+# @rqt/namecheap-web
 
 [![npm version](https://badge.fury.io/js/%40rqt%2Fnamecheap-web.svg)](https://npmjs.org/package/@rqt/namecheap-web)
 

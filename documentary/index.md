@@ -1,4 +1,4 @@
-<!-- BEGIN LINK --><a rel="nofollow" href="https://affiliate.namecheap.com/?affId=70782"><img src="http://files.namecheap.com/graphics/linkus/728x90-1.gif" width="728" height="90" border="0" alt="Namecheap.com"></a><!-- END LINK -->
+<a rel="nofollow" href="https://affiliate.namecheap.com/?affId=70782"><img src="http://files.namecheap.com/graphics/linkus/728x90-1.gif" width="728" height="90" border="0" alt="Namecheap.com"></a>
 
 # @rqt/namecheap-web
 
