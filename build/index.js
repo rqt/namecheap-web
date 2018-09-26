@@ -57,6 +57,7 @@ const USER_AGENT = 'Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com
 
       await authenticator.obtainSession()
       cookies = await authenticator.signIn()
+      await this._saveSession(cookies)
     }
 
     const apHost = getApHost(this.settings.sandbox)

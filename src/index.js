@@ -57,6 +57,7 @@ export default class NamecheapWeb {
 
       await authenticator.obtainSession()
       cookies = await authenticator.signIn()
+      await this._saveSession(cookies)
     }
 
     const apHost = getApHost(this.settings.sandbox)

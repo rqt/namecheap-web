@@ -5,9 +5,8 @@ import bosom from 'bosom'
 (async () => {
   try {
     // 0. Read stored username and password from a local file.
-    const { username, password } = await bosom('.auth-sandbox.json')
+    const { username, password } = await bosom('.auth.json')
     const nw = new NamecheapWeb({
-      sandbox: true,
       readSession: true, // save cookies in a file.
     })
     // 1. Authenticate and create a session.
@@ -15,7 +14,7 @@ import bosom from 'bosom'
 
     // 2. Read white-listed IPs.
     const ips = await nw.getWhitelistedIPList()
-    console.log(JSON.stringify(ips, null, 2))
+    console.log(JSON.stringify(ips[0], null, 2))
 
     // 3. Whitelist a new IP.
     const ip = await NamecheapWeb.LOOKUP_IP()
