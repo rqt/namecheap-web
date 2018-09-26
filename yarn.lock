@@ -78,6 +78,10 @@ assert-throws@3.1.1:
     erotic "2.0.1"
     erte "1.1.4"
 
+bosom@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/bosom/-/bosom-1.0.0.tgz#b3f1f4771f5232c27ccc739a75606eab4fb2aa5f"
+
 catchment@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/catchment/-/catchment-3.0.1.tgz#11dab5fea86d412343e797e052b21091b7e83a55"
@@ -215,6 +219,12 @@ pirates@4.0.0:
 promto@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promto/-/promto-1.0.1.tgz#0a169fc7bd8f48cef1ee9faeace61a100305a536"
+
+reloquent@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/reloquent/-/reloquent-1.0.6.tgz#56cb87f43209e421a129df48ba621a658c08b1d4"
+  dependencies:
+    promto "1.0.1"
 
 restream@3.1.1:
   version "3.1.1"
