@@ -1,6 +1,12 @@
 /* yarn example/ */
-import namecheapWeb from '../src'
+import NamecheapWeb from '../src'
+import bosom from 'bosom'
 
 (async () => {
-  await namecheapWeb()
+  const nw = new NamecheapWeb({
+    readSession: true,
+  })
+  const { username, password } = await bosom('.auth.json')
+  await nw.auth(username, password)
+  debugger
 })()

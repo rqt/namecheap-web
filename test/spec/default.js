@@ -1,22 +1,23 @@
-import { equal, ok } from 'zoroaster/assert'
+import { equal } from 'zoroaster/assert'
+import bosom from 'bosom'
 import Context from '../context'
-import namecheapWeb from '../../src'
+import NamecheapWeb from '../../src'
 
 /** @type {Object.<string, (c: Context)>} */
 const T = {
   context: Context,
   'is a function'() {
-    equal(typeof namecheapWeb, 'function')
+    equal(typeof NamecheapWeb, 'function')
   },
-  async 'calls package without error'() {
-    await namecheapWeb()
+  async 'can get a session'() {
+
   },
-  async 'gets a link to the fixture'({ FIXTURE }) {
-    const res = await namecheapWeb({
-      type: FIXTURE,
-    })
-    ok(res, FIXTURE)
-  },
+  // async 'gets a link to the fixture'({ FIXTURE }) {
+  //   const res = await namecheapWeb({
+  //     type: FIXTURE,
+  //   })
+  //   ok(res, FIXTURE)
+  // },
 }
 
 export default T
