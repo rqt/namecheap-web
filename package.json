@@ -36,10 +36,10 @@
   },
   "homepage": "https://github.com/rqt/namecheap-web#readme",
   "devDependencies": {
-    "alamode": "1.4.0",
-    "documentary": "1.14.0",
+    "alamode": "1.5.1",
+    "documentary": "1.20.1",
     "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.1.0",
-    "zoroaster": "3.0.3"
+    "zoroaster": "3.5.1"
   }
 }
