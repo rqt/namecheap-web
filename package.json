@@ -16,7 +16,8 @@
     "build": "yarn-s d b doc",
     "rec": "NODE_DEBUG=appshot appshot -T 23 -a Terminal -y 150 -f",
     "e": "node example",
-    "example/": "yarn e example/example.js"
+    "example/": "yarn e example/example.js",
+    "example/whois.js": "yarn e example/whois.js"
   },
   "files": [
     "build"

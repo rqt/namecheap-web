@@ -34,7 +34,7 @@
       },
       "console": "integratedTerminal",
       "args": [
-        "example/example.js"
+        "example/whois.js"
       ],
       "skipFiles": [
         "<node_internals>/**/*.js"
