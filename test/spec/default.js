@@ -24,6 +24,10 @@ const T = {
     // 4. Remove white-listed IP.
     await nw.removeWhitelistedIP(name)
   },
+  async 'can whois'() {
+    const res = await NamecheapWeb.WHOIS('adc.sh')
+    ok(/Domain Name/.test(res))
+  },
 }
 
 export default T
