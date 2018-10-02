@@ -1,3 +1,9 @@
+## 2 October 2018
+
+### 1.1.0
+
+- [feature] Write the `whois` requests.
+
 ## 27 September 2018
 
 ### 1.0.0
