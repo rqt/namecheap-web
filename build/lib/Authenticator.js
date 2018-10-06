@@ -146,4 +146,3 @@ const LOG = debuglog('@rqt/namecheap-web')
 }
 
 module.exports = Authenticator
-//# sourceMappingURL=Authenticator.js.map

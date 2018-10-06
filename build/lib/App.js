@@ -115,4 +115,3 @@ const checkError = (res) => {
 }
 
 module.exports = App
-//# sourceMappingURL=App.js.map

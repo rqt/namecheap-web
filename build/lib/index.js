@@ -118,4 +118,3 @@ module.exports.extractFormState = extractFormState
 module.exports.askForNumber = askForNumber
 module.exports.extractXsrf = extractXsrf
 module.exports.deepEqual = deepEqual
-//# sourceMappingURL=index.js.map
