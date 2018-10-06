@@ -26,3 +26,12 @@ Returns this month's coupon from the https://www.namecheap.com/promos/coupons/ p
 %FORK example example/coupon%
 
 %~ width="15"%
+
+### `async static SANDBOX_COUPON(): string`
+
+Returns this month's coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
+
+%EXAMPLE: example/sandbox-coupon.js, ../src => @rqt/namecheap-web%
+%FORK example example/sandbox-coupon%
+
+%~ width="15"%

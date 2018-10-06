@@ -1,7 +1,8 @@
 let rqt = require('rqt'); if (rqt && rqt.__esModule) rqt = rqt.default;
 
-const coupon = async (USER_AGENT) => {
-  const s = await rqt('https://www.namecheap.com/promos/coupons/', {
+const coupon = async (USER_AGENT, sandbox) => {
+  const h = sandbox ? 'sandbox.' : ''
+  const s = await rqt(`https://www.${h}namecheap.com/promos/coupons/`, {
     headers: {
       'User-Agent': USER_AGENT,
     },

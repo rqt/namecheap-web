@@ -54,6 +54,12 @@ const USER_AGENT = 'Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com
   static async COUPON() {
     return coupon(USER_AGENT)
   }
+  /**
+   * Return the coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
+   */
+  static async SANDBOX_COUPON() {
+    return coupon(USER_AGENT, true)
+  }
 
   async auth(username, password, phone, force) {
     let cookies

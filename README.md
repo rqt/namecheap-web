@@ -22,6 +22,7 @@ yarn add -E @rqt/namecheap-web
   * [`async static LOOKUP_IP(): string`](#async-static-lookup_ip-string)
   * [`async static WHOIS(domain): string`](#async-static-whoisdomain-string)
   * [`async static COUPON(): string`](#async-static-coupon-string)
+  * [`async static SANDBOX_COUPON(): string`](#async-static-sandbox_coupon-string)
   * [`async getWhitelistedIPList(username: string, password: string, phone?: string): WhitelistedIP[]`](#async-getwhitelistediplistusername-stringpassword-stringphone-string-whitelistedip)
     * [`WhitelistedIP`](#type-whitelistedip)
   * [`async whitelistIP(ip: string, name?: string)`](#async-whitelistipip-stringname-string-void)
@@ -171,6 +172,29 @@ ZOMBIETLD
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true" width="15"></a></p>
 
+### `async static SANDBOX_COUPON(): string`
+
+Returns this month's coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
+
+```js
+/* yarn example/whois.js */
+import NamecheapWeb from '@rqt/namecheap-web'
+
+(async () => {
+  try {
+    const res = await NamecheapWeb.SANDBOX_COUPON()
+    console.log(res)
+  } catch ({ message }) {
+    console.error(message)
+  }
+})()
+```
+```
+CAMPUSTLD
+```
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true" width="15"></a></p>
+
 ### `async getWhitelistedIPList(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): WhitelistedIP[]`
 
 Get a list of white-listed IP addresses which can make API calls. The maximum of 20 IP addresses is allowed.
@@ -183,19 +207,19 @@ __<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which ca
 | __IpAddress*__  | _string_ | The IP address.        |
 | __ModifyDate*__ | _Date_   | The modification date. |
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/7.svg?sanitize=true" width="15"></a></p>
 
 ### `async whitelistIP(`<br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name?: string,`<br/>`): void`
 
 Add an IP address to the white-listed IPs. If name is not given, it is automatically generated as `rqt {date}`
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/7.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/8.svg?sanitize=true" width="15"></a></p>
 
 ### `async removeWhitelistedIP(`<br/>&nbsp;&nbsp;`name: string,`<br/>`): void`
 
 Remove the IP from the white-listed IPs by its name.
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/8.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/9.svg?sanitize=true"></a></p>
 
 
 ## Copyright
