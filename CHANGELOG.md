@@ -1,5 +1,9 @@
 ## 6 October 2018
 
+### 1.3.0
+
+- [feature] Retrieve sandbox coupon codes.
+
 ### 1.2.0
 
 - [feature] Retrieve coupon codes; use `@rqt/ip`.
