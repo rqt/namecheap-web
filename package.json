@@ -49,6 +49,7 @@
     "zoroaster": "3.5.1"
   },
   "dependencies": {
+    "@rqt/ip": "1.0.0",
     "bosom": "1.0.0",
     "erte": "1.1.4",
     "mismatch": "1.0.3",

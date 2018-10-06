@@ -1,6 +1,6 @@
 const { debuglog } = require('util');
 let bosom = require('bosom'); if (bosom && bosom.__esModule) bosom = bosom.default;
-let rqt = require('rqt'); if (rqt && rqt.__esModule) rqt = rqt.default;
+let getIp = require('@rqt/ip'); if (getIp && getIp.__esModule) getIp = getIp.default;
 let Authenticator = require('./lib/Authenticator'); if (Authenticator && Authenticator.__esModule) Authenticator = Authenticator.default;
 let App = require('./lib/App'); if (App && App.__esModule) App = App.default;
 const { deepEqual } = require('./lib');
@@ -129,7 +129,7 @@ const USER_AGENT = 'Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com
    * Get the public IP address using https://api.ipify.org.
    */
   static async LOOKUP_IP() {
-    const res = await rqt('https://api.ipify.org')
+    const res = await getIp()
     return res
   }
   /**

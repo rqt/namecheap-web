@@ -1,6 +1,6 @@
 import { debuglog } from 'util'
 import bosom from 'bosom'
-import rqt from 'rqt'
+import getIp from '@rqt/ip'
 import Authenticator from './lib/Authenticator'
 import App from './lib/App'
 import { deepEqual } from './lib'
@@ -129,7 +129,7 @@ export default class NamecheapWeb {
    * Get the public IP address using https://api.ipify.org.
    */
   static async LOOKUP_IP() {
-    const res = await rqt('https://api.ipify.org')
+    const res = await getIp()
     return res
   }
   /**
