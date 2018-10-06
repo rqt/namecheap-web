@@ -3,7 +3,7 @@ import NamecheapWeb from '../src'
 
 (async () => {
   try {
-    const res = await NamecheapWeb.WHOIS('test.org')
+    const res = await NamecheapWeb.COUPON()
     console.log(res)
   } catch ({ message }) {
     console.error(message)

@@ -18,6 +18,6 @@ Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be 
 
 %EXAMPLE: example/example.js, ../src => @rqt/namecheap-web%
 
-%FORK-json5 example example/example%
+<!-- %FORK-json5 example example/example% -->
 
 %~ width="15"%

@@ -1,10 +1,10 @@
-<a rel="nofollow" href="https://affiliate.namecheap.com/?affId=70782"><img src="http://files.namecheap.com/graphics/linkus/728x90-1.gif" width="728" height="90" border="0" alt="Namecheap.com"></a>
+[![namecheap](https://raw.githubusercontent.com/rqt/namecheap-web/HEAD/images/nc.gif)](https://nameexpensive.com)
 
 # @rqt/namecheap-web
 
 [![npm version](https://badge.fury.io/js/%40rqt%2Fnamecheap-web.svg)](https://npmjs.org/package/@rqt/namecheap-web)
 
-`@rqt/namecheap-web` is an API to [`namecheap.com`](https://affiliate.namecheap.com/?affId=70782) via the web interface, with an ability to log in using 2-factor Auth and check Whois.
+`@rqt/namecheap-web` is an API to [`namecheap.com`](https://nameexpensive.com) via the web interface, with an ability to log in using 2-factor Auth, check Whois and retrieve a coupon code.
 
 <a href="https://github.com/artdecocode/expensive"><img src="https://raw.github.com/rqt/namecheap-web/master/images/Expensive.svg?sanitize=true" align="left"></a>The web API is currently used in the _Expensive_ package to authenticate and white-list IP addresses. This is useful for dynamic-IP holders. Because the API implemented with `gzip` compression, the amount of traffic is minimized as well, helping to save data on mobile networks.
 
@@ -20,6 +20,8 @@ yarn add -E @rqt/namecheap-web
     * [`Options`](#type-options)
   * [`async auth(username: string, password: string, phone?: string)`](#async-authusername-stringpassword-stringphone-string-void)
   * [`async static LOOKUP_IP(): string`](#async-static-lookup_ip-string)
+  * [`async static WHOIS(domain): string`](#async-static-whoisdomain-string)
+  * [`async static COUPON(): string`](#async-static-coupon-string)
   * [`async getWhitelistedIPList(username: string, password: string, phone?: string): WhitelistedIP[]`](#async-getwhitelistediplistusername-stringpassword-stringphone-string-whitelistedip)
     * [`WhitelistedIP`](#type-whitelistedip)
   * [`async whitelistIP(ip: string, name?: string)`](#async-whitelistipip-stringname-string-void)
@@ -66,7 +68,7 @@ import bosom from 'bosom'
 
     // 2. Read white-listed IPs.
     const ips = await nw.getWhitelistedIPList()
-    console.log(JSON.stringify(ips, null, 2))
+    console.log(JSON.stringify(ips[0], null, 2))
 
     // 3. Whitelist a new IP.
     const ip = await NamecheapWeb.LOOKUP_IP()
@@ -78,36 +80,6 @@ import bosom from 'bosom'
     console.error(message)
   }
 })()
-```
-
-```json5
-[
-  {
-    "Name": "expensive 2018-7-23 18-13-04",
-    "IpAddress": "2.219.56.166",
-    "ModifyDate": "2018-07-23T17:13:05.200Z"
-  },
-  {
-    "Name": "82.132.224.85",
-    "IpAddress": "82.132.224.85",
-    "ModifyDate": "2018-06-14T10:09:21.750Z"
-  },
-  {
-    "Name": "expensive 2018-6-18 19-38-19",
-    "IpAddress": "82.132.225.170",
-    "ModifyDate": "2018-06-18T18:38:20.083Z"
-  },
-  {
-    "Name": "expensive 2018-6-22 19-17-06",
-    "IpAddress": "82.132.246.100",
-    "ModifyDate": "2018-06-22T18:17:06.770Z"
-  },
-  {
-    "Name": "expensive 2018-6-22 11-54-37",
-    "IpAddress": "82.132.247.173",
-    "ModifyDate": "2018-06-22T10:54:37.913Z"
-  }
-]
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true" width="15"></a></p>
@@ -124,6 +96,81 @@ Get the public IP address using [https://api.ipify.org](https://api.ipify.org).
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="15"></a></p>
 
+### `async static WHOIS(domain): string`
+
+Return WHOIS data for the domain.
+
+```js
+/* yarn example/whois.js */
+import NamecheapWeb from '@rqt/namecheap-web'
+
+(async () => {
+  try {
+    const res = await NamecheapWeb.WHOIS('test.org')
+    console.log(res)
+  } catch ({ message }) {
+    console.error(message)
+  }
+})()
+```
+
+<details>
+<summary>Show whois data</summary>
+
+```
+Domain Name: TEST.ORG
+Registry Domain ID: D380528-LROR
+Registrar WHOIS Server: whois.psi-usa.info
+Registrar URL: http://www.psi-usa.info
+Updated Date: 2018-07-27T01:28:31Z
+Creation Date: 1997-07-27T04:00:00Z
+Registry Expiry Date: 2019-07-26T04:00:00Z
+Registrar Registration Expiration Date:
+Registrar: PSI-USA, Inc. dba Domain Robot
+Registrar IANA ID: 151
+Registrar Abuse Contact Email: domain-abuse@psi-usa.info
+Registrar Abuse Contact Phone: +49.94159559482
+Reseller:
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Registrant Organization: TMT Teleservice GmbH &amp; Co.KG
+Registrant State/Province: Bayern
+Registrant Country: DE
+Name Server: NS0.TMT.DE
+Name Server: NS4.TMT.DE
+Name Server: NS3.TMT.DE
+Name Server: NS2.TMT.DE
+Name Server: NS1.TMT.DE
+DNSSEC: unsigned
+URL of the ICANN Whois Inaccuracy Complaint Form https://www.icann.org/wicf/)
+&gt;&gt;&gt; Last update of WHOIS database: 2018-10-06T01:22:28Z
+```
+</details>
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true" width="15"></a></p>
+
+### `async static COUPON(): string`
+
+Returns this month's coupon from the https://www.namecheap.com/promos/coupons/ page.
+
+```js
+/* yarn example/whois.js */
+import NamecheapWeb from '@rqt/namecheap-web'
+
+(async () => {
+  try {
+    const res = await NamecheapWeb.COUPON()
+    console.log(res)
+  } catch ({ message }) {
+    console.error(message)
+  }
+})()
+```
+```
+ZOMBIETLD
+```
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true" width="15"></a></p>
+
 ### `async getWhitelistedIPList(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): WhitelistedIP[]`
 
 Get a list of white-listed IP addresses which can make API calls. The maximum of 20 IP addresses is allowed.
@@ -136,19 +183,19 @@ __<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which ca
 | __IpAddress*__  | _string_ | The IP address.        |
 | __ModifyDate*__ | _Date_   | The modification date. |
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true" width="15"></a></p>
 
 ### `async whitelistIP(`<br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name?: string,`<br/>`): void`
 
 Add an IP address to the white-listed IPs. If name is not given, it is automatically generated as `rqt {date}`
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/7.svg?sanitize=true" width="15"></a></p>
 
 ### `async removeWhitelistedIP(`<br/>&nbsp;&nbsp;`name: string,`<br/>`): void`
 
 Remove the IP from the white-listed IPs by its name.
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/8.svg?sanitize=true"></a></p>
 
 
 ## Copyright

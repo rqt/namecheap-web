@@ -4,7 +4,8 @@ import rqt from 'rqt'
 import Authenticator from './lib/Authenticator'
 import App from './lib/App'
 import { deepEqual } from './lib'
-import { Session } from 'rqt'
+import whois from './whois'
+import coupon from './coupon'
 
 const LOG = debuglog('@rqt/namecheap-web')
 
@@ -41,24 +42,17 @@ export default class NamecheapWeb {
     }
   }
 
+  /**
+   * Return the whois information about the domain.
+   */
   static async WHOIS(domain) {
-    const s = new Session({
-      host: 'https://www.namecheap.com/domains/whois',
-      headers: {
-        'User-Agent': USER_AGENT,
-      },
-    })
-    const res = await s.rqt(`/results.aspx?domain=${domain}`)
-    const re = /var url = "\/domains\/whois\/whois-ajax\.aspx\?(.+?)"/
-    const reRes = re.exec(res)
-    if (!reRes) throw new Error('Could not find the AJAX request URL.')
-    const [, params] = reRes
-    const res2 = await s.rqt(`/whois-ajax.aspx?${params}`)
-    const re2 = /<pre id=".+?_whoisResultText" class="wrapped whois">([\s\S]+)<\/pre>/
-    const re2Res = re2.exec(res2)
-    if (!re2Res) throw new Error('Could not extract data.')
-    const [, whois] = re2Res
-    return whois
+    return whois(domain, USER_AGENT)
+  }
+  /**
+   * Return the coupon from the https://www.namecheap.com/promos/coupons/ page.
+   */
+  static async COUPON() {
+    return coupon(USER_AGENT)
   }
 
   async auth(username, password, phone, force) {
