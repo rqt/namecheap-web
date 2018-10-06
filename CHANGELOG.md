@@ -2,7 +2,7 @@
 
 ### 1.2.0
 
-- [feature] Retrieve coupon codes.
+- [feature] Retrieve coupon codes; use `@rqt/ip`.
 
 ## 2 October 2018
 
