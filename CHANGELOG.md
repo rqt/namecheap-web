@@ -1,3 +1,9 @@
+## 6 October 2018
+
+### 1.2.0
+
+- [feature] Retrieve coupon codes.
+
 ## 2 October 2018
 
 ### 1.1.0
