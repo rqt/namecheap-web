@@ -18,6 +18,10 @@ const T = {
 
     // 3. Whitelist a new IP.
     const ip = await NamecheapWeb.LOOKUP_IP()
+
+    const exists = ips.find(({ IpAddress }) => IpAddress == ip)
+    if (exists) await nw.removeWhitelistedIP(exists.Name)
+
     const name = '@rqt/namecheap-web test'
     await nw.whitelistIP(ip, name)
 
