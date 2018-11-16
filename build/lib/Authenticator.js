@@ -34,7 +34,7 @@ const LOG = debuglog('@rqt/namecheap-web')
     const u = '/cart/ajax/SessionHandler.ashx'
     const { SessionKey } = await this.session.jqt(u)
     if (!SessionKey) {
-      throw new Error(`Could not acquire the session key from ${u}.`)
+      throw new Error(`Could not acquire the session key from ${this.session.host}${u}.`)
     }
     LOG('Obtained a session key %s', SessionKey)
     this.SessionKey = SessionKey

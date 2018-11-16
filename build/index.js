@@ -1,11 +1,11 @@
 const { debuglog } = require('util');
 let bosom = require('bosom'); if (bosom && bosom.__esModule) bosom = bosom.default;
 let getIp = require('@rqt/ip'); if (getIp && getIp.__esModule) getIp = getIp.default;
-let Authenticator = require('./lib/Authenticator'); if (Authenticator && Authenticator.__esModule) Authenticator = Authenticator.default;
-let App = require('./lib/App'); if (App && App.__esModule) App = App.default;
+const Authenticator = require('./lib/Authenticator');
+const App = require('./lib/App');
 const { deepEqual } = require('./lib');
-let whois = require('./whois'); if (whois && whois.__esModule) whois = whois.default;
-let coupon = require('./coupon'); if (coupon && coupon.__esModule) coupon = coupon.default;
+const whois = require('./whois');
+const coupon = require('./coupon');
 
 const LOG = debuglog('@rqt/namecheap-web')
 

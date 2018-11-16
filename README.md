@@ -143,7 +143,7 @@ Name Server: NS2.TMT.DE
 Name Server: NS1.TMT.DE
 DNSSEC: unsigned
 URL of the ICANN Whois Inaccuracy Complaint Form https://www.icann.org/wicf/)
-&gt;&gt;&gt; Last update of WHOIS database: 2018-10-06T01:22:28Z
+&gt;&gt;&gt; Last update of WHOIS database: 2018-11-16T01:54:10Z
 ```
 </details>
 
@@ -167,7 +167,7 @@ import NamecheapWeb from '@rqt/namecheap-web'
 })()
 ```
 ```
-ZOMBIETLD
+THANXFUL
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true" width="15"></a></p>
@@ -190,7 +190,7 @@ import NamecheapWeb from '@rqt/namecheap-web'
 })()
 ```
 ```
-CAMPUSTLD
+THANXFUL
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true" width="15"></a></p>
