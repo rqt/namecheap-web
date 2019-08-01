@@ -1,5 +1,9 @@
 ## 1 August 2019
 
+### [1.4.1](https://github.com/rqt/namecheap-web/compare/v1.4.0...v1.4.1)
+
+- [package] Publish `src` directory.
+
 ### [1.4.0](https://github.com/rqt/namecheap-web/compare/v1.3.1...v1.4.0)
 
 - [package] Compile with [_Depack_](https://compiler.page).

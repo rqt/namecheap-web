@@ -26,7 +26,8 @@
   },
   "files": [
     "compile",
-    "types"
+    "types",
+    "src"
   ],
   "externs": "types/externs.js",
   "repository": {
