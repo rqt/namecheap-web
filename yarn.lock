@@ -39,10 +39,10 @@
   resolved "https://registry.yarnpkg.com/@rqt/aqt/-/aqt-1.3.0.tgz#06472f50f85ab8e2a391db5b92c43ee726a8a844"
   integrity sha512-Ux0ygtQqaJE2bLuxw4J/mJpPyJGtLs1AdEdi/5FUG59CHwHiDWEsrldF4kxsJNFyWkWYT6Fe/zNTKnzv6KFREQ==
 
-"@rqt/ip@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@rqt/ip/-/ip-1.2.1.tgz#c1bee6762ab6ffc44bcf011c39dcb3e4c2e664af"
-  integrity sha512-sgF5PFlbug/SLstFrjdNsgEGatJC6gtdlycXmIeEuVXkbsGY/VNU9/Ih2sAnzD7XS6cETGZzlZOCEDi6XpaBDg==
+"@rqt/ip@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@rqt/ip/-/ip-1.2.2.tgz#07e8c2768175766a00d1ef18f671f961cc7225ec"
+  integrity sha512-Uf6NiytS9Onh776T2kBlUlYMZbSeBHRJZN1jwLJbYkbampkARYRbqNFmweGvk/FKldBPF19ocebDVA6N693ezg==
 
 "@typedefs/parser@^1.3.2":
   version "1.3.2"

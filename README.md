@@ -9,24 +9,24 @@
 <a href="https://github.com/artdecocode/expensive"><img src="https://raw.github.com/rqt/namecheap-web/master/images/Expensive.svg?sanitize=true" align="left"></a>The web API is currently used in the _Expensive_ package to authenticate and white-list IP addresses. This is useful for dynamic-IP holders. Because the API implemented with `gzip` compression, the amount of traffic is minimized as well, helping to save data on mobile networks.
 
 ```sh
-yarn add -E @rqt/namecheap-web
+yarn add @rqt/namecheap-web
 ```
 
 ## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-  * [`constructor(options?: Options): NamecheapWeb`](#constructoroptions-options-namecheapweb)
-    * [`Options`](#type-options)
-  * [`async auth(username: string, password: string, phone?: string)`](#async-authusername-stringpassword-stringphone-string-void)
-  * [`async static LOOKUP_IP(): string`](#async-static-lookup_ip-string)
-  * [`async static WHOIS(domain): string`](#async-static-whoisdomain-string)
-  * [`async static COUPON(): string`](#async-static-coupon-string)
-  * [`async static SANDBOX_COUPON(): string`](#async-static-sandbox_coupon-string)
-  * [`async getWhitelistedIPList(username: string, password: string, phone?: string): WhitelistedIP[]`](#async-getwhitelistediplistusername-stringpassword-stringphone-string-whitelistedip)
-    * [`WhitelistedIP`](#type-whitelistedip)
-  * [`async whitelistIP(ip: string, name?: string)`](#async-whitelistipip-stringname-string-void)
-  * [`async removeWhitelistedIP(name: string)`](#async-removewhitelistedipname-string-void)
+- [`constructor(options?: Options): NamecheapWeb`](#constructoroptions-options-namecheapweb)
+  * [`_namecheap.Options`](#type-_namecheapoptions)
+- [`async auth(username: string, password: string, phone?: string)`](#async-authusername-stringpassword-stringphone-string-void)
+- [`async static LOOKUP_IP(): string`](#async-static-lookup_ip-string)
+- [`async static WHOIS(domain): string`](#async-static-whoisdomain-string)
+- [`async static COUPON(): string`](#async-static-coupon-string)
+- [`async static SANDBOX_COUPON(): string`](#async-static-sandbox_coupon-string)
+- [`async getWhitelistedIPList(username: string, password: string, phone?: string): WhitelistedIP[]`](#async-getwhitelistediplistusername-stringpassword-stringphone-string-whitelistedip)
+  * [`_namecheap.WhitelistedIP`](#type-_namecheapwhitelistedip)
+- [`async whitelistIP(ip: string, name?: string)`](#async-whitelistipip-stringname-string-void)
+- [`async removeWhitelistedIP(name: string)`](#async-removewhitelistedipname-string-void)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents">
@@ -41,17 +41,49 @@ The package is available by importing its default class:
 import NamecheapWeb from '@rqt/namecheap-web'
 ```
 
-### `constructor(`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): NamecheapWeb`
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/1.svg?sanitize=true">
+</a></p>
+
+## `constructor(`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): NamecheapWeb`
 
 Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be specified in the options. To remember the session cookies on the local filesystem, the `readSession` parameter can be passed. On the production version, the session expires after 20 minutes, but can be renewed after 10 minutes of using an existing session.
 
-__<a name="type-options">`Options`</a>__: Options for the web client.
-
-|    Name     |       Type       |                           Description                           |        Default        |
-| ----------- | ---------------- | --------------------------------------------------------------- | --------------------- |
-| sandbox     | <em>boolean</em> | Whether to use the `sandbox` version.                           | `false`               |
-| readSession | <em>boolean</em> | Read and store the cookies for the session from the local file. | `false`               |
-| sessionFile | <em>string</em>  | If reading session, indicates the file where to store cookies.  | `.namecheap-web.json` |
+<strong><a name="type-_namecheapoptions">`_namecheap.Options`</a></strong>: Options for the web client.
+<table>
+ <thead><tr>
+  <th>Name</th>
+  <th>Type &amp; Description</th>
+  <th>Default</th>
+ </tr></thead>
+ <tr>
+  <td rowSpan="3" align="center">sandbox</td>
+  <td><em>boolean</em></td>
+  <td rowSpan="3"><code>false</code></td>
+ </tr>
+ <tr></tr>
+ <tr>
+  <td>Whether to use the <code>sandbox</code> version.</td>
+ </tr>
+ <tr>
+  <td rowSpan="3" align="center">readSession</td>
+  <td><em>boolean</em></td>
+  <td rowSpan="3"><code>false</code></td>
+ </tr>
+ <tr></tr>
+ <tr>
+  <td>Read and store the cookies for the session from the local file.</td>
+ </tr>
+ <tr>
+  <td rowSpan="3" align="center">sessionFile</td>
+  <td><em>string</em></td>
+  <td rowSpan="3"><code>.namecheap-web.json</code></td>
+ </tr>
+ <tr></tr>
+ <tr>
+  <td>If reading session, indicates the file where to store cookies.</td>
+ </tr>
+</table>
 
 ```js
 /* yarn example/ */
@@ -86,31 +118,30 @@ import bosom from 'bosom'
 ```
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/1.svg?sanitize=true" width="15">
+  <img src="/.documentary/section-breaks/2.svg?sanitize=true">
 </a></p>
 
-### `async auth(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): void`
+## `async auth(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): void`
 
 Authenticate the app and obtain the cookies. If 2-factor authentication is enabled, it will also be carried out. The `phone` argument can be passed which is the last 3 digits of the phone used to receive the confirmation text. If it is not passed, a question will be asked via the CLI. The code should be then entered in the CLI as well.
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/2.svg?sanitize=true" width="15">
+  <img src="/.documentary/section-breaks/3.svg?sanitize=true">
 </a></p>
 
-### `async static LOOKUP_IP(): string`
+## `async static LOOKUP_IP(): string`
 
 Get the public IP address using [https://api.ipify.org](https://api.ipify.org).
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/3.svg?sanitize=true" width="15">
+  <img src="/.documentary/section-breaks/4.svg?sanitize=true">
 </a></p>
 
-### `async static WHOIS(domain): string`
+## `async static WHOIS(domain): string`
 
 Return WHOIS data for the domain.
 
 ```js
-/* yarn example/whois.js */
 import NamecheapWeb from '@rqt/namecheap-web'
 
 (async () => {
@@ -157,10 +188,10 @@ URL of the ICANN Whois Inaccuracy Complaint Form https://www.icann.org/wicf/)
 </details>
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/4.svg?sanitize=true" width="15">
+  <img src="/.documentary/section-breaks/5.svg?sanitize=true">
 </a></p>
 
-### `async static COUPON(): string`
+## `async static COUPON(): string`
 
 Returns this month's coupon from the https://www.namecheap.com/promos/coupons/ page.
 
@@ -178,14 +209,14 @@ import NamecheapWeb from '@rqt/namecheap-web'
 })()
 ```
 ```
-HEATUP5
+STEAMYDEALZ
 ```
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/5.svg?sanitize=true" width="15">
+  <img src="/.documentary/section-breaks/6.svg?sanitize=true">
 </a></p>
 
-### `async static SANDBOX_COUPON(): string`
+## `async static SANDBOX_COUPON(): string`
 
 Returns this month's coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
 
@@ -207,47 +238,86 @@ STEAMYDEALZ
 ```
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/6.svg?sanitize=true" width="15">
+  <img src="/.documentary/section-breaks/7.svg?sanitize=true">
 </a></p>
 
-### `async getWhitelistedIPList(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): WhitelistedIP[]`
+## `async getWhitelistedIPList(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): WhitelistedIP[]`
 
 Get a list of white-listed IP addresses which can make API calls. The maximum of 20 IP addresses is allowed.
 
-__<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which can be used for API calls.
-
-|      Name       |      Type       |      Description       |
-| --------------- | --------------- | ---------------------- |
-| __Name*__       | <em>string</em> | The name of the IP.    |
-| __IpAddress*__  | <em>string</em> | The IP address.        |
-| __ModifyDate*__ | <em>Date</em>   | The modification date. |
+<strong><a name="type-_namecheapwhitelistedip">`_namecheap.WhitelistedIP`</a></strong>: A white-listed IP which can be used for API calls.
+<table>
+ <thead><tr>
+  <th>Name</th>
+  <th>Type &amp; Description</th>
+ </tr></thead>
+ <tr>
+  <td rowSpan="3" align="center"><strong>Name*</strong></td>
+  <td><em>string</em></td>
+ </tr>
+ <tr></tr>
+ <tr>
+  <td>The name of the IP.</td>
+ </tr>
+ <tr>
+  <td rowSpan="3" align="center"><strong>IpAddress*</strong></td>
+  <td><em>string</em></td>
+ </tr>
+ <tr></tr>
+ <tr>
+  <td>The IP address.</td>
+ </tr>
+ <tr>
+  <td rowSpan="3" align="center"><strong>ModifyDate*</strong></td>
+  <td><em>!Date</em></td>
+ </tr>
+ <tr></tr>
+ <tr>
+  <td>The modification date.</td>
+ </tr>
+</table>
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/7.svg?sanitize=true" width="15">
+  <img src="/.documentary/section-breaks/8.svg?sanitize=true">
 </a></p>
 
-### `async whitelistIP(`<br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name?: string,`<br/>`): void`
+## `async whitelistIP(`<br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name?: string,`<br/>`): void`
 
 Add an IP address to the white-listed IPs. If name is not given, it is automatically generated as `rqt {date}`
-
-<p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/8.svg?sanitize=true" width="15">
-</a></p>
-
-### `async removeWhitelistedIP(`<br/>&nbsp;&nbsp;`name: string,`<br/>`): void`
-
-Remove the IP from the white-listed IPs by its name.
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/9.svg?sanitize=true">
 </a></p>
 
+## `async removeWhitelistedIP(`<br/>&nbsp;&nbsp;`name: string,`<br/>`): void`
+
+Remove the IP from the white-listed IPs by its name.
+
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/10.svg?sanitize=true">
+</a></p>
+
 
 ## Copyright
 
-(c) [Rqt][1] 2018
-
-[1]: https://rqt.biz
+<table>
+  <tr>
+    <th>
+      <a href="https://artd.eco">
+        <img width="100" src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png"
+          alt="Art Deco">
+      </a>
+    </th>
+    <th>© <a href="https://artd.eco">Art Deco</a> for <a href="https://rqt.biz">Rqt</a> 2019</th>
+    <th>
+      <a href="https://www.technation.sucks" title="Tech Nation Visa">
+        <img width="100" src="https://raw.githubusercontent.com/idiocc/cookies/master/wiki/arch4.jpg"
+          alt="Tech Nation Visa">
+      </a>
+    </th>
+    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
+  </tr>
+</table>
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/-1.svg?sanitize=true">

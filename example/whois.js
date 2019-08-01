@@ -1,4 +1,3 @@
-/* yarn example/whois.js */
 import NamecheapWeb from '../src'
 
 (async () => {

@@ -58,7 +58,7 @@
     "zoroaster": "^4.1.1-alpha"
   },
   "dependencies": {
-    "@rqt/ip": "^1.2.1",
+    "@rqt/ip": "^1.2.2",
     "bosom": "^2.0.0",
     "erte": "^1.2.0",
     "mismatch": "^1.2.0",
