@@ -1,3 +1,9 @@
+## 2 August 2019
+
+### [1.4.2](https://github.com/rqt/namecheap-web/compare/v1.4.1...v1.4.2)
+
+- [types] Rename _Options_ to _WebOptions_ to avoid clash with `@rqt/namecheap` package.
+
 ## 1 August 2019
 
 ### [1.4.1](https://github.com/rqt/namecheap-web/compare/v1.4.0...v1.4.1)
