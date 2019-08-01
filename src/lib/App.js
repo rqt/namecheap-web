@@ -117,8 +117,8 @@ export default class App {
       },
     }))
     checkError(res)
-    const { 'Data': d } = res
-    return d
+    const { Data } = res
+    return Data
   }
 }
 

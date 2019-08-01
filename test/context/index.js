@@ -12,9 +12,11 @@ const FIXTURE = resolve(__dirname, '../fixture')
 export default class Context {
   async _init() {
     LOG('init context')
-    const { username, password } = await bosom('.auth-sandbox.json')
+    const auth = process.env.PROD ? '.auth.json' : '.auth-sandbox.json'
+    const { username, password } = await bosom(auth)
     this.username = username
     this.password = password
+    this.sandbox = !process.env.PROD
   }
   /**
    * Example method.

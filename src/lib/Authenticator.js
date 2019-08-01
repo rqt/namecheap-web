@@ -66,12 +66,15 @@ export default class Authenticator {
     return cookies
   }
   static get LOGIN_URL() {
-    return '/myaccount/login-signup.aspx'
+    return '/myaccount/login-signup/'
   }
   static get SECOND_AUTH_URL() {
     return '/myaccount/twofa/secondauth.aspx'
   }
-  async secondAuth() {
+  /**
+   * @param {boolean} retry
+   */
+  async secondAuth(retry = false) {
     const body = await this.session.rqt(Authenticator.SECOND_AUTH_URL)
 
     ok(
@@ -98,6 +101,14 @@ export default class Authenticator {
     if (/You have reached the limit on the number.+/m.test(body2))
       throw new Error(body2.match(/You have reached the limit on the number.+/m)[0])
 
+    const isError = /Error occured during Two-Factor authentication provider call./m.test(body2)
+    if (!retry && isError) {
+      console.log('Received an error message: Error occured during Two-Factor authentication provider call.')
+      console.log('Retrying to get the code, if you get 2 messages, dismiss the first one.')
+      return await this.secondAuth(true)
+    } else if (retry && isError) {
+      throw new Error('Error occured during Two-Factor authentication provider call.')
+    }
     ok(
       /We sent a message with the verification code/.test(body2),
       'Could not find the code entry section.',

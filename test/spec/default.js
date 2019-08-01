@@ -1,13 +1,13 @@
-import { ok } from 'zoroaster/assert'
+import { ok } from '@zoroaster/assert'
 import Context from '../context'
 import NamecheapWeb from '../../src'
 
 /** @type {Object.<string, (c: Context)>} */
 const T = {
   context: Context,
-  async 'can whitelist an IP'({ username, password }) {
+  async 'can whitelist an IP'({ username, password, sandbox }) {
     const nw = new NamecheapWeb({
-      sandbox: true,
+      sandbox,
     })
     // 1. Authenticate and create a session.
     await nw.auth(username, password)
@@ -30,7 +30,7 @@ const T = {
   },
   async 'can whois'() {
     const res = await NamecheapWeb.WHOIS('adc.sh')
-    ok(/Domain Name/.test(res))
+    ok(/Domain Name/i.test(res))
   },
 }
 

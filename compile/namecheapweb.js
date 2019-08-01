@@ -25,23 +25,23 @@ const u = (a, b = 0, c = !1) => {
 };
 const {homedir:ea} = os;
 const w = /\s+at.*(?:\(|\s)(.*)\)?/, fa = /^(?:(?:(?:node|(?:internal\/[\w/]*|.*node_modules\/(?:IGNORED_MODULES)\/.*)?\w+)\.js:\d+:\d+)|native)/, ha = ea(), y = a => {
-  const {pretty:b = !1, ignoredModules:c = ["pirates"]} = {}, e = new RegExp(fa.source.replace("IGNORED_MODULES", c.join("|")));
-  return a.replace(/\\/g, "/").split("\n").filter(d => {
-    d = d.match(w);
-    if (null === d || !d[1]) {
+  const {pretty:b = !1, ignoredModules:c = ["pirates"]} = {}, d = new RegExp(fa.source.replace("IGNORED_MODULES", c.join("|")));
+  return a.replace(/\\/g, "/").split("\n").filter(e => {
+    e = e.match(w);
+    if (null === e || !e[1]) {
       return !0;
     }
-    d = d[1];
-    return d.includes(".app/Contents/Resources/electron.asar") || d.includes(".app/Contents/Resources/default_app.asar") ? !1 : !e.test(d);
-  }).filter(d => d.trim()).map(d => b ? d.replace(w, (f, g) => f.replace(g, g.replace(ha, "~"))) : d).join("\n");
+    e = e[1];
+    return e.includes(".app/Contents/Resources/electron.asar") || e.includes(".app/Contents/Resources/default_app.asar") ? !1 : !d.test(e);
+  }).filter(e => e.trim()).map(e => b ? e.replace(w, (f, g) => f.replace(g, g.replace(ha, "~"))) : e).join("\n");
 };
 function ia(a, b, c = !1) {
-  return function(e) {
-    var d = v(arguments), {stack:f} = Error();
-    const g = u(f, 2, !0), l = (f = e instanceof Error) ? e.message : e;
-    d = [`Error: ${l}`, ...null !== d && a === d || c ? [b] : [g, b]].join("\n");
-    d = y(d);
-    return Object.assign(f ? e : Error(), {message:l, stack:d});
+  return function(d) {
+    var e = v(arguments), {stack:f} = Error();
+    const g = u(f, 2, !0), l = (f = d instanceof Error) ? d.message : d;
+    e = [`Error: ${l}`, ...null !== e && a === e || c ? [b] : [g, b]].join("\n");
+    e = y(e);
+    return Object.assign(f ? d : Error(), {message:l, stack:e});
   };
 }
 ;function z(a) {
@@ -58,8 +58,8 @@ function ia(a, b, c = !1) {
 };
 class ka extends ca {
   constructor(a) {
-    const {binary:b = !1, rs:c = null, ...e} = a || {}, {c:d = z(!0), proxyError:f} = a || {}, g = (l, k) => d(k);
-    super(e);
+    const {binary:b = !1, rs:c = null, ...d} = a || {}, {c:e = z(!0), proxyError:f} = a || {}, g = (l, k) => e(k);
+    super(d);
     this.a = [];
     this.h = new Promise((l, k) => {
       this.on("finish", () => {
@@ -101,17 +101,17 @@ async function la(a) {
   if (!a) {
     throw Error("No path is given.");
   }
-  const c = z(!0), e = ba(a);
-  await new Promise((d, f) => {
-    e.on("error", g => {
+  const c = z(!0), d = ba(a);
+  await new Promise((e, f) => {
+    d.on("error", g => {
       g = c(g);
       f(g);
-    }).on("close", d).end(b);
+    }).on("close", e).end(b);
   });
 }
 ;const na = r("bosom"), oa = async(a, b, c) => {
-  const {replacer:e = null, space:d = null} = c;
-  b = JSON.stringify(b, e, d);
+  const {replacer:d = null, space:e = null} = c;
+  b = JSON.stringify(b, d, e);
   await ma(a, b);
 }, E = async(a, b) => {
   var c = {};
@@ -130,20 +130,20 @@ const ta = a => {
   ({"content-encoding":a} = a.headers);
   return "gzip" == a;
 }, ua = (a, b, c = {}) => {
-  const {justHeaders:e, binary:d, c:f = z(!0)} = c;
+  const {justHeaders:d, binary:e, c:f = z(!0)} = c;
   let g, l, k, h, t = 0, x = 0;
   c = (new Promise((B, C) => {
     g = a(b, async m => {
       ({headers:l} = m);
       const {statusMessage:p, statusCode:q} = m;
       k = {statusMessage:p, statusCode:q};
-      if (e) {
+      if (d) {
         m.destroy();
       } else {
         var n = ta(m);
         m.on("data", D => t += D.byteLength);
         m = n ? m.pipe(sa()) : m;
-        h = await A(m, {binary:d});
+        h = await A(m, {binary:e});
         x = h.length;
       }
       B();
@@ -157,11 +157,11 @@ const ta = a => {
   return {s:g, f:c};
 };
 const va = (a = {}) => Object.keys(a).reduce((b, c) => {
-  const e = a[c];
-  c = `${encodeURIComponent(c)}=${encodeURIComponent(e)}`;
+  const d = a[c];
+  c = `${encodeURIComponent(c)}=${encodeURIComponent(d)}`;
   return [...b, c];
-}, []).join("&").replace(/%20/g, "+"), wa = async(a, b, {data:c, justHeaders:e, binary:d, c:f = z(!0)}) => {
-  const {s:g, f:l} = ua(a, b, {justHeaders:e, binary:d, c:f});
+}, []).join("&").replace(/%20/g, "+"), wa = async(a, b, {data:c, justHeaders:d, binary:e, c:f = z(!0)}) => {
+  const {s:g, f:l} = ua(a, b, {justHeaders:d, binary:e, c:f});
   g.end(c);
   a = await l;
   ({"content-type":b = ""} = a.headers);
@@ -182,11 +182,11 @@ try {
   F = "@aqt/rqt";
 }
 const xa = r("aqt"), G = async(a, b = {}) => {
-  const {data:c, type:e = "json", headers:d = {"User-Agent":`Mozilla/5.0 (Node.JS) ${F}`}, compress:f = !0, binary:g = !1, justHeaders:l = !1, method:k, timeout:h} = b;
+  const {data:c, type:d = "json", headers:e = {"User-Agent":`Mozilla/5.0 (Node.JS) ${F}`}, compress:f = !0, binary:g = !1, justHeaders:l = !1, method:k, timeout:h} = b;
   b = z(!0);
-  const {hostname:t, protocol:x, port:B, path:C} = ra(a), m = "https:" === x ? pa : qa, p = {hostname:t, port:B, path:C, headers:{...d}, timeout:h, method:k};
+  const {hostname:t, protocol:x, port:B, path:C} = ra(a), m = "https:" === x ? pa : qa, p = {hostname:t, port:B, path:C, headers:{...e}, timeout:h, method:k};
   if (c) {
-    var q = e;
+    var q = d;
     var n = c;
     switch(q) {
       case "json":
@@ -204,9 +204,9 @@ const xa = r("aqt"), G = async(a, b = {}) => {
     "Content-Length" in p.headers || (p.headers["Content-Length"] = Buffer.byteLength(q));
   }
   !f || "Accept-Encoding" in p.headers || (p.headers["Accept-Encoding"] = "gzip, deflate");
-  const {body:D, headers:za, byteLength:O, statusCode:Aa, statusMessage:Ba, o:P, g:Q} = await wa(m, p, {data:q, justHeaders:l, binary:g, c:b});
+  const {body:D, headers:Aa, byteLength:O, statusCode:Ba, statusMessage:Ca, o:P, g:Q} = await wa(m, p, {data:q, justHeaders:l, binary:g, c:b});
   xa("%s %s B%s", a, O, `${O != P ? ` (raw ${P} B)` : ""}`);
-  return {body:Q ? Q : D, headers:za, statusCode:Aa, statusMessage:Ba};
+  return {body:Q ? Q : D, headers:Aa, statusCode:Ba, statusMessage:Ca};
 };
 const H = async(a, b = {}) => {
   ({body:a} = await G(a, b));
@@ -214,8 +214,8 @@ const H = async(a, b = {}) => {
 };
 async function I(a, b, c = {}) {
   {
-    const {headers:e = {}, ...d} = c;
-    c = {...d, headers:{...a.headers, ...e, Cookie:a.Cookie}};
+    const {headers:d = {}, ...e} = c;
+    c = {...e, headers:{...a.headers, ...d, Cookie:a.Cookie}};
   }
   b = await G(a.host ? `${a.host}${b}` : b, c);
   ({headers:c} = b);
@@ -245,27 +245,27 @@ class J {
     return await I(this, a, b);
   }
   get Cookie() {
-    return Ca(this.cookies);
+    return za(this.cookies);
   }
 }
-const Ca = a => Object.keys(a).reduce((b, c) => {
+const za = a => Object.keys(a).reduce((b, c) => {
   c = `${c}=${a[c]}`;
   return [...b, c];
 }, []).join("; "), ya = (a, b) => {
   b = Da(b);
   const c = {...a, ...b};
-  return Object.keys(c).reduce((e, d) => {
-    const f = c[d];
-    return f ? {...e, [d]:f} : e;
+  return Object.keys(c).reduce((d, e) => {
+    const f = c[e];
+    return f ? {...d, [e]:f} : d;
   }, {});
 }, Da = ({"set-cookie":a = []} = {}) => a.reduce((b, c) => {
   {
-    const e = /^(.+?)=(.*?);/.exec(c);
-    if (!e) {
+    const d = /^(.+?)=(.*?);/.exec(c);
+    if (!d) {
       throw Error(`Could not extract a cookie from ${c}`);
     }
-    const [, d, f] = e;
-    c = {[d]:f};
+    const [, e, f] = d;
+    c = {[e]:f};
   }
   return {...b, ...c};
 }, {});
@@ -277,17 +277,17 @@ async function Ea() {
 const {createInterface:Fa} = readline;
 function Ga(a, b, c) {
   return setTimeout(() => {
-    const e = Error(`${a ? a : "Promise"} has timed out after ${b}ms`);
-    e.stack = `Error: ${e.message}`;
-    c(e);
+    const d = Error(`${a ? a : "Promise"} has timed out after ${b}ms`);
+    d.stack = `Error: ${d.message}`;
+    c(d);
   }, b);
 }
 function Ha(a, b) {
   let c;
-  const e = new Promise((d, f) => {
+  const d = new Promise((e, f) => {
     c = Ga(a, b, f);
   });
-  return {timeout:c, f:e};
+  return {timeout:c, f:d};
 }
 async function Ia(a, b, c) {
   if (!(a instanceof Promise)) {
@@ -299,17 +299,17 @@ async function Ia(a, b, c) {
   if (0 > b) {
     throw Error("Timeout cannot be negative");
   }
-  const {f:e, timeout:d} = Ha(c, b);
+  const {f:d, timeout:e} = Ha(c, b);
   try {
-    return await Promise.race([a, e]);
+    return await Promise.race([a, d]);
   } finally {
-    clearTimeout(d);
+    clearTimeout(e);
   }
 }
 ;function Ja(a, b = {}) {
-  const {timeout:c, password:e = !1, output:d = process.stdout, input:f = process.stdin, ...g} = b;
-  b = Fa({input:f, output:d, ...g});
-  if (e) {
+  const {timeout:c, password:d = !1, output:e = process.stdout, input:f = process.stdin, ...g} = b;
+  b = Fa({input:f, output:e, ...g});
+  if (d) {
     const k = b.output;
     b._writeToOutput = h => {
       if (["\r\n", "\n", "\r"].includes(h)) {
@@ -337,31 +337,31 @@ async function La(a) {
   }
   return await Object.keys(a).reduce(async(b, c) => {
     b = await b;
-    var e = a[c];
-    switch(typeof e) {
+    var d = a[c];
+    switch(typeof d) {
       case "object":
-        e = {...e};
+        d = {...d};
         break;
       case "string":
-        e = {text:e};
+        d = {text:d};
         break;
       default:
         throw Error("A question must be a string or an object.");
     }
-    e.text = `${e.text}${e.text.endsWith("?") ? "" : ":"} `;
-    var d;
-    if (e.defaultValue) {
-      var f = e.defaultValue;
+    d.text = `${d.text}${d.text.endsWith("?") ? "" : ":"} `;
+    var e;
+    if (d.defaultValue) {
+      var f = d.defaultValue;
     }
-    e.getDefault && (d = await e.getDefault());
+    d.getDefault && (e = await d.getDefault());
     let g = f || "";
-    f && d && f != d ? g = `\x1b[90m${f}\x1b[0m` : f && f == d && (g = "");
-    f = d || "";
-    ({promise:f} = Ja(`${e.text}${g ? `[${g}] ` : ""}${f ? `[${f}] ` : ""}`, {timeout:void 0, password:e.password}));
-    d = await f || d || e.defaultValue;
-    "function" == typeof e.validation && e.validation(d);
-    "function" == typeof e.postProcess && (d = await e.postProcess(d));
-    return {...b, [c]:d};
+    f && e && f != e ? g = `\x1b[90m${f}\x1b[0m` : f && f == e && (g = "");
+    f = e || "";
+    ({promise:f} = Ja(`${d.text}${g ? `[${g}] ` : ""}${f ? `[${f}] ` : ""}`, {timeout:void 0, password:d.password}));
+    e = await f || e || d.defaultValue;
+    "function" == typeof d.validation && d.validation(e);
+    "function" == typeof d.postProcess && (e = await d.postProcess(e));
+    return {...b, [c]:e};
   }, {});
 }
 ;async function L(a) {
@@ -369,9 +369,9 @@ async function La(a) {
   return a;
 }
 ;function M(a, b, c) {
-  const e = [];
-  b.replace(a, (d, ...f) => {
-    d = f.slice(0, f.length - 2).reduce((g, l, k) => {
+  const d = [];
+  b.replace(a, (e, ...f) => {
+    e = f.slice(0, f.length - 2).reduce((g, l, k) => {
       k = c[k];
       if (!k || void 0 === l) {
         return g;
@@ -379,9 +379,9 @@ async function La(a) {
       g[k] = l;
       return g;
     }, {});
-    e.push(d);
+    d.push(e);
   });
-  return e;
+  return d;
 }
 ;/*
  diff package https://github.com/kpdecker/jsdiff
@@ -392,35 +392,35 @@ const Ma = {black:30, red:31, green:32, yellow:33, blue:34, magenta:35, cyan:36,
 function N(a, b) {
   return (b = Ma[b]) ? `\x1b[${b}m${a}\x1b[0m` : a;
 }
-;const R = a => M(/<input type="hidden" name="(.+?)" id="__\w+" value="(.*?)" \/>/g, a, ["name", "value"]).reduce((b, {name:c, value:e}) => ({...b, [c]:e}), {}), Na = a => {
+;const R = a => M(/<input type="hidden" name="(.+?)" id="__\w+" value="(.*?)" \/>/g, a, ["name", "value"]).reduce((b, {name:c, value:d}) => ({...b, [c]:d}), {}), Na = a => {
   const b = /(.+?)(\d\d\d)$/.exec(a);
   if (!b) {
     return a;
   }
-  const [, c, e] = b;
-  return `${N(c, "grey")}${e}`;
+  const [, c, d] = b;
+  return `${N(c, "grey")}${d}`;
 }, Oa = a => a.map(({title:b}) => ` ${b}`).map(Na).join("\n"), Pa = async(a, b) => {
   var c = `Which phone number to use for 2 factor auth
 ${Oa(a)}
 enter last 3 digits`;
-  const e = await L({text:c, async getDefault() {
+  const d = await L({text:c, async getDefault() {
     return b || a[0].last;
-  }, validation(d) {
-    if (!a.some(({last:f}) => f == d)) {
+  }, validation(e) {
+    if (!a.some(({last:f}) => f == e)) {
       throw Error("Unknown number entered.");
     }
   }});
-  ({value:c} = a.find(({last:d}) => d == e));
+  ({value:c} = a.find(({last:e}) => e == d));
   return c;
 }, Qa = (a, b) => {
-  var c = Object.keys(a).reduce((e, d) => {
-    var f = a[d];
-    const g = b[d];
-    return d in b ? f !== g ? (f = N(`${`-  ${d}`}: ${f}`, "red"), d = N(`${`+  ${d}`}: ${g}`, "green"), [...e, f, d]) : e : (d = N(`${`-  ${d}`}: ${f}`, "red"), [...e, d]);
+  var c = Object.keys(a).reduce((d, e) => {
+    var f = a[e];
+    const g = b[e];
+    return e in b ? f !== g ? (f = N(`${`-  ${e}`}: ${f}`, "red"), e = N(`${`+  ${e}`}: ${g}`, "green"), [...d, f, e]) : d : (e = N(`${`-  ${e}`}: ${f}`, "red"), [...d, e]);
   }, []);
-  c = Object.keys(b).reduce((e, d) => {
-    const f = a[d];
-    return d in a ? e : (d = N(`${`+  ${d}`}: ${f}`, "green"), [...e, d]);
+  c = Object.keys(b).reduce((d, e) => {
+    const f = a[e];
+    return e in a ? d : (e = N(`${`+  ${e}`}: ${f}`, "green"), [...d, e]);
   }, c);
   if (c.length) {
     throw Error(`
@@ -438,26 +438,33 @@ async function Sa(a) {
   Ra("Obtained a session key %s", b);
   a.a = b;
 }
-async function Ta(a) {
-  var b = await a.session.rqt(S.a);
-  K(/Select Phone Contact Number/.test(b), 'Could not find the "Select Phone" section.');
-  var c = M(/<option value="(\d+-phone)">(.+?(\d\d\d))<\/option>/g, b, ["value", "title", "last"]);
-  K(c.length, "Could not find any numbers.");
-  c = await Pa(c, a.j);
-  b = await a.session.rqt(S.a, {data:{...R(b), ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$ddlAuthorizeList:c, ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$btnSendVerification:"Proceed with Login"}, type:"form"});
-  if (/You have reached the limit on the number.+/m.test(b)) {
-    throw Error(b.match(/You have reached the limit on the number.+/m)[0]);
+async function S(a, b = !1) {
+  var c = await a.session.rqt(T.a);
+  K(/Select Phone Contact Number/.test(c), 'Could not find the "Select Phone" section.');
+  var d = M(/<option value="(\d+-phone)">(.+?(\d\d\d))<\/option>/g, c, ["value", "title", "last"]);
+  K(d.length, "Could not find any numbers.");
+  d = await Pa(d, a.j);
+  c = await a.session.rqt(T.a, {data:{...R(c), ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$ddlAuthorizeList:d, ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$btnSendVerification:"Proceed with Login"}, type:"form"});
+  if (/You have reached the limit on the number.+/m.test(c)) {
+    throw Error(c.match(/You have reached the limit on the number.+/m)[0]);
   }
-  K(/We sent a message with the verification code/.test(b), "Could not find the code entry section.");
-  await T(a, b);
+  d = /Error occured during Two-Factor authentication provider call./m.test(c);
+  if (!b && d) {
+    return console.log("Received an error message: Error occured during Two-Factor authentication provider call."), console.log("Retrying to get the code, if you get 2 messages, dismiss the first one."), await S(a, !0);
+  }
+  if (b && d) {
+    throw Error("Error occured during Two-Factor authentication provider call.");
+  }
+  K(/We sent a message with the verification code/.test(c), "Could not find the code entry section.");
+  await U(a, c);
 }
-async function Ua(a) {
-  const {body:b, statusCode:c, headers:{location:e}} = await a.session.aqt(S.b, {data:{hidden_LoginPassword:"", LoginUserName:a.l, LoginPassword:a.i, sessionEncryptValue:a.a}, type:"form"});
+async function Ta(a) {
+  const {body:b, statusCode:c, headers:{location:d}} = await a.session.aqt(T.b, {data:{hidden_LoginPassword:"", LoginUserName:a.l, LoginPassword:a.i, sessionEncryptValue:a.a}, type:"form"});
   if (200 == c) {
     {
-      const [, d] = /<strong class="title">Validation Error<\/strong>\s+<div>(.+?)<\/div>/.exec(b) || [];
-      if (d) {
-        throw Error(d.replace(/(<([^>]+)>)/ig, ""));
+      const [, e] = /<strong class="title">Validation Error<\/strong>\s+<div>(.+?)<\/div>/.exec(b) || [];
+      if (e) {
+        throw Error(e.replace(/(<([^>]+)>)/ig, ""));
       }
     }
   } else {
@@ -465,38 +472,38 @@ async function Ua(a) {
       return a.session.cookies;
     }
   }
-  if (302 == c && e.includes(S.a)) {
-    await Ta(a);
+  if (302 == c && d.includes(T.a)) {
+    await S(a);
   } else {
     throw Error(`Unknown result (status code ${c})`);
   }
   ({cookies:a} = a.session);
   return a;
 }
-async function T(a, b) {
+async function U(a, b) {
   var [, c] = /Your 6-digit code begins with (\d)./.exec(b) || [];
   if (!c) {
     throw Error("Could not send the code.");
   }
   c = await L({text:`Security code (begins with ${c})`});
-  const {body:e, headers:{location:d}} = await a.session.aqt(S.a, {data:{...R(b), ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$txtAuthVerification:c, ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$btnVerify:"Submit Security Code"}, type:"form"});
-  if (/Oops, you entered an invalid code.+/m.test(e)) {
-    return console.log("Incorrect code, try again."), await T(a, e);
+  const {body:d, headers:{location:e}} = await a.session.aqt(T.a, {data:{...R(b), ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$txtAuthVerification:c, ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$btnVerify:"Submit Security Code"}, type:"form"});
+  if (/Oops, you entered an invalid code.+/m.test(d)) {
+    return console.log("Incorrect code, try again."), await U(a, d);
   }
-  K(/Object moved/.test(e), "Expected to have been redirected after sign-in.");
-  return d;
+  K(/Object moved/.test(d), "Expected to have been redirected after sign-in.");
+  return e;
 }
-class S {
-  constructor({username:a, password:b, m:c, host:e, userAgent:d} = {}) {
-    e = new J({host:e, headers:{"User-Agent":d}});
+class T {
+  constructor({username:a, password:b, m:c, host:d, userAgent:e} = {}) {
+    d = new J({host:d, headers:{"User-Agent":e}});
     this.l = a;
     this.i = b;
-    this.b = e;
+    this.b = d;
     this.j = c;
     this.a = null;
   }
   static get b() {
-    return "/myaccount/login-signup.aspx";
+    return "/myaccount/login-signup/";
   }
   static get a() {
     return "/myaccount/twofa/secondauth.aspx";
@@ -505,7 +512,7 @@ class S {
     return this.b;
   }
 }
-;const Va = a => {
+;const Ua = a => {
   if (a.__isError) {
     var b = Error(a.Message);
     Object.assign(b, a);
@@ -515,15 +522,15 @@ class S {
     throw b = a.Errors.map(({Message:c}) => c).join(", "), b = Error(b), b.__type = a.__type, b;
   }
 };
-function U(a) {
+function V(a) {
   return `/api/v1/ncpl/apiaccess/ui/${a}`;
 }
-async function Wa(a) {
+async function Va(a) {
   ({statusCode:a} = await a.session.aqt("/", {justHeaders:!0}));
   return 200 == a;
 }
-async function V(a) {
-  a = await a.session.rqt(W.a);
+async function W(a) {
+  a = await a.session.rqt(X.a);
   a = /<input type="hidden" id="x-ncpl-csrfvalue" value="(.+?)"/.exec(a);
   if (!a) {
     throw Error("Could not find the x-ncpl-csrfvalue token on the page.");
@@ -531,25 +538,25 @@ async function V(a) {
   [, a] = a;
   return a;
 }
-async function Xa(a, b, c = `@rqt ${(new Date).toLocaleString()}`.replace(/:/g, "-")) {
-  const e = await V(a);
-  await a.request(U("AddIpAddress"), e, {accountPassword:a.password, ipAddress:b, name:c});
+async function Wa(a, b, c = `@rqt ${(new Date).toLocaleString()}`.replace(/:/g, "-")) {
+  const d = await W(a);
+  await a.request(V("AddIpAddress"), d, {accountPassword:a.password, ipAddress:b, name:c});
 }
-async function Ya(a, b) {
-  const c = await V(a);
-  await a.request(U("RemoveIpAddresses"), c, {accountPassword:a.password, names:[b]});
+async function Xa(a, b) {
+  const c = await W(a);
+  await a.request(V("RemoveIpAddresses"), c, {accountPassword:a.password, names:[b]});
 }
-async function Za(a) {
-  const b = await V(a);
-  ({IpAddresses:a} = await a.request(U("GetWhitelistedIpAddresses"), b));
-  return a.map(({Name:c, IpAddress:e, ModifyDate:d}) => ({Name:c, IpAddress:e, ModifyDate:new Date(`${d}Z`)}));
+async function Ya(a) {
+  const b = await W(a);
+  ({IpAddresses:a} = await a.request(V("GetWhitelistedIpAddresses"), b));
+  return a.map(({Name:c, IpAddress:d, ModifyDate:e}) => ({Name:c, IpAddress:d, ModifyDate:new Date(`${e}Z`)}));
 }
-class W {
-  constructor({cookies:a, host:b, userAgent:c, password:e}) {
+class X {
+  constructor({cookies:a, host:b, userAgent:c, password:d}) {
     b = new J({host:b, headers:{"User-Agent":c}});
     b.cookies = a;
     this.a = b;
-    this.password = e;
+    this.password = d;
   }
   get session() {
     return this.a;
@@ -559,12 +566,12 @@ class W {
   }
   async request(a, b, c) {
     a = await this.session.jqt(a, {data:c, headers:{"x-ncpl-rcsrf":b}});
-    Va(a);
+    Ua(a);
     ({Data:a} = a);
     return a;
   }
 }
-;const $a = async a => {
+;const Za = async a => {
   var b = new J({host:"https://www.namecheap.com/domains/whois", headers:{"User-Agent":"Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com/rqt/namecheap-web"}});
   a = await b.rqt(`/results.aspx?domain=${a}`);
   a = /var url = "\/domains\/whois\/whois-ajax\.aspx\?(.+?)"/.exec(a);
@@ -580,7 +587,7 @@ class W {
   [, b] = b;
   return b;
 };
-const X = async(a = !1) => {
+const Y = async(a = !1) => {
   a = await H(`https://www.${a ? "sandbox." : ""}namecheap.com/promos/coupons/`, {headers:{"User-Agent":"Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com/rqt/namecheap-web"}});
   a = /<small>Coupon Code<\/small>\s+.+couponCode">(.+)<\/span>/.exec(a);
   if (!a) {
@@ -588,63 +595,63 @@ const X = async(a = !1) => {
   }
   return a[1];
 };
-const ab = r("@rqt/namecheap-web"), bb = (a = !1) => `https://www.${a ? "sandbox." : ""}namecheap.com`, cb = (a = !1) => `https://ap.www.${a ? "sandbox." : ""}namecheap.com`;
-async function Y(a, b) {
+const $a = r("@rqt/namecheap-web"), ab = (a = !1) => `https://www.${a ? "sandbox." : ""}namecheap.com`, bb = (a = !1) => `https://ap.www.${a ? "sandbox." : ""}namecheap.com`;
+async function cb(a, b) {
   a.b.readSession && await db(b, a.b.sessionFile);
 }
 async function Z(a, b) {
   const c = eb(a.a.session.cookies);
   b = await b;
-  const e = eb(a.a.session.cookies);
+  const d = eb(a.a.session.cookies);
   try {
-    Qa(c, e);
-  } catch ({message:d}) {
-    ab(d), await Y(a, e);
+    Qa(c, d);
+  } catch ({message:e}) {
+    $a(e), await cb(a, d);
   }
   return b;
 }
 class fb {
   constructor(a = {}) {
-    const {sandbox:b, readSession:c, sessionFile:e = ".namecheap-web.json"} = a;
-    this.b = {sandbox:b, readSession:c, sessionFile:e};
+    const {sandbox:b, readSession:c, sessionFile:d = ".namecheap-web.json"} = a;
+    this.b = {sandbox:b, readSession:c, sessionFile:d};
     this.a = null;
   }
   static async["LOOKUP_IP"]() {
     return await Ea();
   }
   static async["WHOIS"](a) {
-    return $a(a);
+    return Za(a);
   }
   static async["COUPON"]() {
-    return X();
+    return Y();
   }
   static async["SANDBOX_COUPON"]() {
-    return X(!0);
+    return Y(!0);
   }
-  async auth(a, b, c, e = !1) {
-    var d;
-    this.b.readSession && !e && (d = await gb(this.b.sessionFile));
-    d || (d = new S({username:a, password:b, host:bb(this.b.sandbox), m:c, userAgent:"Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com/rqt/namecheap-web"}), await Sa(d), d = await Ua(d), await Y(this, d));
-    this.a = new W({cookies:d, password:b, host:cb(this.b.sandbox), userAgent:"Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com/rqt/namecheap-web"});
-    d = await Z(this, Wa(this.a));
-    if (!d && e) {
+  async auth(a, b, c, d = !1) {
+    var e;
+    this.b.readSession && !d && (e = await gb(this.b.sessionFile));
+    e || (e = new T({username:a, password:b, host:ab(this.b.sandbox), m:c, userAgent:"Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com/rqt/namecheap-web"}), await Sa(e), e = await Ta(e), await cb(this, e));
+    this.a = new X({cookies:e, password:b, host:bb(this.b.sandbox), userAgent:"Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com/rqt/namecheap-web"});
+    e = await Z(this, Va(this.a));
+    if (!e && d) {
       throw Error("Could not authenticate.");
     }
-    d || await this.auth(a, b, c, !0);
+    e || await this.auth(a, b, c, !0);
   }
   async whitelistIP(a, b) {
-    await Z(this, Xa(this.a, a, b));
+    await Z(this, Wa(this.a, a, b));
   }
   async getWhitelistedIPList() {
-    return await Z(this, Za(this.a));
+    return await Z(this, Ya(this.a));
   }
   async removeWhitelistedIP(a) {
-    await Z(this, Ya(this.a, a));
+    await Z(this, Xa(this.a, a));
   }
 }
 const eb = a => {
   const b = ["x-ncpl-auth", ".ncauth", "SessionId", "U"];
-  return Object.keys(a).reduce((c, e) => b.includes(e) ? {...c, [e]:a[e]} : c, {});
+  return Object.keys(a).reduce((c, d) => b.includes(d) ? {...c, [d]:a[d]} : c, {});
 }, gb = async a => {
   try {
     return await E(a);

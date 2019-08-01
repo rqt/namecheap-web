@@ -11,6 +11,8 @@
       "program": "${workspaceFolder}/node_modules/.bin/zoroaster",
       "env": {
         "NODE_DEBUG": "@rqt/namecheap-web,aqt",
+        "PROD": "1",
+        "ALAMODE_ENV": "test-compile",
       },
       "console": "integratedTerminal",
       "args": [
