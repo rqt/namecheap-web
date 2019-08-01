@@ -60,3 +60,4 @@ typings/
 .auth.json
 .auth-sandbox.json
 .namecheap-web.json
+.documentary/cache

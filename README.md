@@ -29,7 +29,9 @@ yarn add -E @rqt/namecheap-web
   * [`async removeWhitelistedIP(name: string)`](#async-removewhitelistedipname-string-void)
 - [Copyright](#copyright)
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/0.svg?sanitize=true">
+</a></p>
 
 ## API
 
@@ -45,11 +47,11 @@ Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be 
 
 __<a name="type-options">`Options`</a>__: Options for the web client.
 
-|    Name     |   Type    |                           Description                           |        Default        |
-| ----------- | --------- | --------------------------------------------------------------- | --------------------- |
-| sandbox     | _boolean_ | Whether to use the `sandbox` version.                           | `false`               |
-| readSession | _boolean_ | Read and store the cookies for the session from the local file. | `false`               |
-| sessionFile | _string_  | If reading session, indicates the file where to store cookies.  | `.namecheap-web.json` |
+|    Name     |       Type       |                           Description                           |        Default        |
+| ----------- | ---------------- | --------------------------------------------------------------- | --------------------- |
+| sandbox     | <em>boolean</em> | Whether to use the `sandbox` version.                           | `false`               |
+| readSession | <em>boolean</em> | Read and store the cookies for the session from the local file. | `false`               |
+| sessionFile | <em>string</em>  | If reading session, indicates the file where to store cookies.  | `.namecheap-web.json` |
 
 ```js
 /* yarn example/ */
@@ -83,19 +85,25 @@ import bosom from 'bosom'
 })()
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/1.svg?sanitize=true" width="15">
+</a></p>
 
 ### `async auth(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): void`
 
 Authenticate the app and obtain the cookies. If 2-factor authentication is enabled, it will also be carried out. The `phone` argument can be passed which is the last 3 digits of the phone used to receive the confirmation text. If it is not passed, a question will be asked via the CLI. The code should be then entered in the CLI as well.
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/2.svg?sanitize=true" width="15">
+</a></p>
 
 ### `async static LOOKUP_IP(): string`
 
 Get the public IP address using [https://api.ipify.org](https://api.ipify.org).
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/3.svg?sanitize=true" width="15">
+</a></p>
 
 ### `async static WHOIS(domain): string`
 
@@ -123,9 +131,9 @@ Domain Name: TEST.ORG
 Registry Domain ID: D380528-LROR
 Registrar WHOIS Server: whois.psi-usa.info
 Registrar URL: http://www.psi-usa.info
-Updated Date: 2018-07-27T01:28:31Z
+Updated Date: 2019-07-27T01:31:37Z
 Creation Date: 1997-07-27T04:00:00Z
-Registry Expiry Date: 2019-07-26T04:00:00Z
+Registry Expiry Date: 2020-07-26T04:00:00Z
 Registrar Registration Expiration Date:
 Registrar: PSI-USA, Inc. dba Domain Robot
 Registrar IANA ID: 151
@@ -133,6 +141,7 @@ Registrar Abuse Contact Email: domain-abuse@psi-usa.info
 Registrar Abuse Contact Phone: +49.94159559482
 Reseller:
 Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Domain Status: autoRenewPeriod https://icann.org/epp#autoRenewPeriod
 Registrant Organization: TMT Teleservice GmbH &amp; Co.KG
 Registrant State/Province: Bayern
 Registrant Country: DE
@@ -143,11 +152,13 @@ Name Server: NS2.TMT.DE
 Name Server: NS1.TMT.DE
 DNSSEC: unsigned
 URL of the ICANN Whois Inaccuracy Complaint Form https://www.icann.org/wicf/)
-&gt;&gt;&gt; Last update of WHOIS database: 2018-11-16T01:54:10Z
+&gt;&gt;&gt; Last update of WHOIS database: 2019-08-01T01:55:55Z
 ```
 </details>
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/4.svg?sanitize=true" width="15">
+</a></p>
 
 ### `async static COUPON(): string`
 
@@ -167,10 +178,12 @@ import NamecheapWeb from '@rqt/namecheap-web'
 })()
 ```
 ```
-THANXFUL
+HEATUP5
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/5.svg?sanitize=true" width="15">
+</a></p>
 
 ### `async static SANDBOX_COUPON(): string`
 
@@ -190,10 +203,12 @@ import NamecheapWeb from '@rqt/namecheap-web'
 })()
 ```
 ```
-THANXFUL
+STEAMYDEALZ
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/6.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/6.svg?sanitize=true" width="15">
+</a></p>
 
 ### `async getWhitelistedIPList(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): WhitelistedIP[]`
 
@@ -201,25 +216,31 @@ Get a list of white-listed IP addresses which can make API calls. The maximum of
 
 __<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which can be used for API calls.
 
-|      Name       |   Type   |      Description       |
-| --------------- | -------- | ---------------------- |
-| __Name*__       | _string_ | The name of the IP.    |
-| __IpAddress*__  | _string_ | The IP address.        |
-| __ModifyDate*__ | _Date_   | The modification date. |
+|      Name       |      Type       |      Description       |
+| --------------- | --------------- | ---------------------- |
+| __Name*__       | <em>string</em> | The name of the IP.    |
+| __IpAddress*__  | <em>string</em> | The IP address.        |
+| __ModifyDate*__ | <em>Date</em>   | The modification date. |
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/7.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/7.svg?sanitize=true" width="15">
+</a></p>
 
 ### `async whitelistIP(`<br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name?: string,`<br/>`): void`
 
 Add an IP address to the white-listed IPs. If name is not given, it is automatically generated as `rqt {date}`
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/8.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/8.svg?sanitize=true" width="15">
+</a></p>
 
 ### `async removeWhitelistedIP(`<br/>&nbsp;&nbsp;`name: string,`<br/>`): void`
 
 Remove the IP from the white-listed IPs by its name.
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/9.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/9.svg?sanitize=true">
+</a></p>
 
 
 ## Copyright
@@ -228,4 +249,6 @@ Remove the IP from the white-listed IPs by its name.
 
 [1]: https://rqt.biz
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/-1.svg?sanitize=true">
+</a></p>
