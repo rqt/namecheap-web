@@ -1,3 +1,10 @@
+## 1 August 2019
+
+### [1.4.0](https://github.com/rqt/namecheap-web/compare/v1.3.1...v1.4.0)
+
+- [package] Compile with [_Depack_](https://compiler.page).
+- [fix] Fix authentication, check for transient 1st time 2-nd auth error and retry.
+
 ## 16 November 2018
 
 ### 1.3.1
