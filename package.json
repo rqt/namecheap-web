@@ -1,6 +1,6 @@
 {
   "name": "@rqt/namecheap-web",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "An API To Namecheap.com Via The Web Interface, With An Ability To Log In Using 2-Factor Auth To Whitelist IPs And Check Whois And Coupons.",
   "main": "compile/index.js",
   "module": "src/index.js",
