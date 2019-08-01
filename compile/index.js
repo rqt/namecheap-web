@@ -3,7 +3,7 @@ const _NamecheapWeb = require('./namecheapweb')
 class NamecheapWeb extends _NamecheapWeb {
   /**
    * Performs namecheap.com operations via the web interface.
-   * @param {_namecheap.Options} [options] Options for the web client.
+   * @param {_namecheap.WebOptions} [options] Options for the web client.
    * @param {boolean} [options.sandbox=false] Whether to use the `sandbox` version. Default `false`.
    * @param {boolean} [options.readSession=false] Read and store the cookies for the session from the local file. Default `false`.
    * @param {string} [options.sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
@@ -92,10 +92,10 @@ module.exports = NamecheapWeb
 
 /* typal types/options.xml noSuppress closure */
 /**
- * @typedef {_namecheap.Options} Options `＠record` Options for the web client.
+ * @typedef {_namecheap.WebOptions} WebOptions `＠record` Options for the web client.
  */
 /**
- * @typedef {Object} _namecheap.Options `＠record` Options for the web client.
+ * @typedef {Object} _namecheap.WebOptions `＠record` Options for the web client.
  * @prop {boolean} [sandbox=false] Whether to use the `sandbox` version. Default `false`.
  * @prop {boolean} [readSession=false] Read and store the cookies for the session from the local file. Default `false`.
  * @prop {string} [sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.

@@ -31,7 +31,7 @@ const USER_AGENT = 'Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com
 export default class NamecheapWeb {
   /**
    * Create an instance of a new client.
-   * @param {!_namecheap.Options} options Options for the web client.
+   * @param {!_namecheap.WebOptions} options Options for the web client.
    * @param {boolean} [options.sandbox=false] Whether to use the `sandbox` version. Default `false`.
    * @param {boolean} [options.readSession=false] Read and store the cookies for the session from the local file. Default `false`.
    * @param {string} [options.sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
@@ -195,7 +195,7 @@ const saveSession = async (cookies, path) => {
 
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('../types').Options} _namecheap.Options
+ * @typedef {import('../types').WebOptions} _namecheap.WebOptions
  */
 /**
  * @suppress {nonStandardJsDocs}

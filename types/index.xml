@@ -1,6 +1,6 @@
 <types ns="_namecheap">
   <interface name="NamecheapWeb" desc="Performs namecheap.com operations via the web interface.">
-    <arg type="_namecheap.Options" name="options" opt>
+    <arg type="_namecheap.WebOptions" name="options" opt>
       Options for the web client.
     </arg>
 

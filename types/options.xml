@@ -1,5 +1,5 @@
 <types ns="_namecheap">
-  <type record name="Options" desc="Options for the web client.">
+  <type record name="WebOptions" desc="Options for the web client.">
     <prop boolean name="sandbox" default="false">
       Whether to use the `sandbox` version.
     </prop>

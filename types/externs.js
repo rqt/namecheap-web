@@ -8,7 +8,7 @@
 var _namecheap = {}
 /**
  * Performs namecheap.com operations via the web interface.
- * @param {_namecheap.Options=} [options] Options for the web client.
+ * @param {_namecheap.WebOptions=} [options] Options for the web client.
  * @interface
  */
 _namecheap.NamecheapWeb = function(options) {}
@@ -88,22 +88,22 @@ _namecheap.WhitelistedIP.prototype.ModifyDate
  * Options for the web client.
  * @record
  */
-_namecheap.Options
+_namecheap.WebOptions
 /**
  * Whether to use the `sandbox` version.
  * @type {boolean|undefined}
  */
-_namecheap.Options.prototype.sandbox
+_namecheap.WebOptions.prototype.sandbox
 /**
  * Read and store the cookies for the session from the local file.
  * @type {boolean|undefined}
  */
-_namecheap.Options.prototype.readSession
+_namecheap.WebOptions.prototype.readSession
 /**
  * If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
  * @type {string|undefined}
  */
-_namecheap.Options.prototype.sessionFile
+_namecheap.WebOptions.prototype.sessionFile
 
 /* typal types/result.xml externs */
 /**
