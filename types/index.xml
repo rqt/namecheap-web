@@ -1,6 +1,6 @@
 <types ns="_namecheap">
   <interface name="NamecheapWeb" desc="Performs namecheap.com operations via the web interface.">
-    <arg type="_namecheap.Options" name="options">
+    <arg type="_namecheap.Options" name="options" opt>
       Options for the web client.
     </arg>
 
@@ -25,7 +25,7 @@
     </fn>
     <fn async name="removeWhitelistedIP">
       <arg string name="name">
-        The name name of the saved IP to remove.
+        The name of the saved IP to remove.
       </arg>
       Remove the IP from the white-listed IPs by its name.
     </fn>

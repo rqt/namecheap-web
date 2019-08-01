@@ -8,7 +8,7 @@
 var _namecheap = {}
 /**
  * Performs namecheap.com operations via the web interface.
- * @param {_namecheap.Options} options Options for the web client.
+ * @param {_namecheap.Options=} [options] Options for the web client.
  * @interface
  */
 _namecheap.NamecheapWeb = function(options) {}
@@ -35,7 +35,7 @@ _namecheap.NamecheapWeb.prototype.getWhitelistedIPList = function() {}
 _namecheap.NamecheapWeb.prototype.whitelistIP = function(ip, name) {}
 /**
  * Remove the IP from the white-listed IPs by its name.
- * @param {string} name The name name of the saved IP to remove.
+ * @param {string} name The name of the saved IP to remove.
  * @return {!Promise}
  */
 _namecheap.NamecheapWeb.prototype.removeWhitelistedIP = function(name) {}

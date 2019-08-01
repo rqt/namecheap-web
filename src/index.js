@@ -52,23 +52,38 @@ export default class NamecheapWeb {
   }
 
   /**
+   * Get the public IP address using https://api.ipify.org.
+   * @nocollapse
+   * @suppress {checkTypes}
+   */
+  static async 'LOOKUP_IP'() {
+    const res = await getIp()
+    return res
+  }
+  /**
    * Return the whois information about the domain.
+   * @nocollapse
+   * @suppress {checkTypes}
    * @param {string} domain
    */
-  static async WHOIS(domain) {
+  static async 'WHOIS'(domain) {
     return whois(domain, USER_AGENT)
   }
   /**
    *
    * Return the coupon from the https://www.namecheap.com/promos/coupons/ page.
+   * @nocollapse
+   * @suppress {checkTypes}
    */
-  static async COUPON() {
+  static async 'COUPON'() {
     return coupon(USER_AGENT)
   }
   /**
    * Return the coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
+   * @nocollapse
+   * @suppress {checkTypes}
    */
-  static async SANDBOX_COUPON() {
+  static async 'SANDBOX_COUPON'() {
     return coupon(USER_AGENT, true)
   }
 
@@ -147,13 +162,6 @@ export default class NamecheapWeb {
    */
   async getWhitelistedIPList() {
     const res = /** @type {!Array<!_namecheap.WhitelistedIP>} */ (await this._wrap(this._app.getWhitelistedIPList()))
-    return res
-  }
-  /**
-   * Get the public IP address using https://api.ipify.org.
-   */
-  static async LOOKUP_IP() {
-    const res = await getIp()
     return res
   }
   /**
