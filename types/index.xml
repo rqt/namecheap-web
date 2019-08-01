@@ -7,6 +7,7 @@
       <arg string name="username">The username to log in with.</arg>
       <arg string name="password">The password to enter.</arg>
       <arg string name="phone" opt>The phone number to select for 2-factor auth.</arg>
+      <arg boolean name="force" opt>Try to log in even if session exists.</arg>
       Authenticate the app and obtain the cookies.
     </fn>
     <fn async name="getWhitelistedIPList" return="!Array<!namecheap.WhitelistedIP>">
@@ -25,5 +26,17 @@
       </arg>
       Remove the IP from the white-listed IPs by its name.
     </fn>
-  </type>
+    <static async name="WHOIS" return="string">
+      <arg string name="domain">
+        The domain name to get information about.
+      </arg>
+      Return the whois information about the domain.
+    </static>
+    <static async name="COUPON" return="string">
+      Return the coupon from the https://www.namecheap.com/promos/coupons/ page.
+    </static>
+    <static async name="SANDBOX_COUPON" return="string">
+      Return the coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
+    </static>
+  </interface>
 </types>

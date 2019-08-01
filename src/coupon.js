@@ -1,6 +1,10 @@
 import rqt from 'rqt'
 
-const coupon = async (USER_AGENT, sandbox) => {
+/**
+ * @param {string} USER_AGENT
+ * @param {boolean=} sandbox
+ */
+const coupon = async (USER_AGENT, sandbox = false) => {
   const h = sandbox ? 'sandbox.' : ''
   const s = await rqt(`https://www.${h}namecheap.com/promos/coupons/`, {
     headers: {

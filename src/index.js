@@ -51,11 +51,13 @@ export default class NamecheapWeb {
 
   /**
    * Return the whois information about the domain.
+   * @param {string} domain
    */
   static async WHOIS(domain) {
     return whois(domain, USER_AGENT)
   }
   /**
+   *
    * Return the coupon from the https://www.namecheap.com/promos/coupons/ page.
    */
   static async COUPON() {

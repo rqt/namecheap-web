@@ -8,17 +8,19 @@
 var _namecheap = {}
 /**
  * Performs namecheap.com operations via the web interface.
+ * @param {_namecheap.Options} options Options for the web client.
  * @interface
  */
-_namecheap.NamecheapWeb
+_namecheap.NamecheapWeb = function(options) {}
 /**
  * Authenticate the app and obtain the cookies.
  * @param {string} username The username to log in with.
  * @param {string} password The password to enter.
  * @param {string=} [phone] The phone number to select for 2-factor auth.
+ * @param {boolean=} [force] Try to log in even if session exists.
  * @return {!Promise}
  */
-_namecheap.NamecheapWeb.prototype.auth = function(username, password, phone) {}
+_namecheap.NamecheapWeb.prototype.auth = function(username, password, phone, force) {}
 /**
  * Get a list of white-listed IP addresses which can make API calls.
  * @return {!Promise<!Array<!namecheap.WhitelistedIP>>}
@@ -37,6 +39,22 @@ _namecheap.NamecheapWeb.prototype.whitelistIP = function(ip, name) {}
  * @return {!Promise}
  */
 _namecheap.NamecheapWeb.prototype.removeWhitelistedIP = function(name) {}
+/**
+ * Return the whois information about the domain.
+ * @param {string} domain The domain name to get information about.
+ * @return {!Promise<string>}
+ */
+_namecheap.NamecheapWeb.WHOIS = function(domain) {}
+/**
+ * Return the coupon from the https://www.namecheap.com/promos/coupons/ page.
+ * @return {!Promise<string>}
+ */
+_namecheap.NamecheapWeb.COUPON = function() {}
+/**
+ * Return the coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
+ * @return {!Promise<string>}
+ */
+_namecheap.NamecheapWeb.SANDBOX_COUPON = function() {}
 
 /* typal types/ips.xml externs */
 /**

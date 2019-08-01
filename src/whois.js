@@ -1,5 +1,9 @@
 import { Session } from 'rqt'
 
+/**
+ * @param {string} domain
+ * @param {string} USER_AGENT
+ */
 const whois = async (domain, USER_AGENT) => {
   const s = new Session({
     host: 'https://www.namecheap.com/domains/whois',
