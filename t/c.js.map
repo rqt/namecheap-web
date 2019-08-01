@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"t/c.js",
+"lineCount":11,
+"mappings":"A;AAKA,KAAMA,EAAN;AACE,KAAG,CAACC,CAAD,CAAO;AACRC,WAAAC,IAAA,CAAYF,CAAZ,CAAA;AADQ;AAOV,UAAO,cAAP,CAAqB,CAACA,CAAD,CAAO;AAC1BC,WAAAE,MAAA,CAAcH,CAAd,CAAA;AAD0B;AAR9B;AAaAI,MAAAC,QAAA,GAAiBN,CAAjB;;",
+"sources":["t/index.js"],
+"names":["Example","test","console","log","error","module","exports"]
+}
