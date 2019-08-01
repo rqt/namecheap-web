@@ -11,7 +11,7 @@
     "test-all": "yarn-s test test-build",
     "test-watch": "yarn test -w",
     "lint": "eslint .",
-    "doc": "NODE_DEBUG=doc doc -o README.md",
+    "doc": "NODE_DEBUG=doc doc -o README.md -n _namecheap",
     "compile": "depack-dev src/depack.js -o compile/namecheapweb.js -a -c -s -p --source_map_include_content -O 2018",
     "b": "alamode src -o build -s",
     "d": "yarn-s externs template d1",

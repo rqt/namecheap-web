@@ -16,15 +16,15 @@ yarn add @rqt/namecheap-web
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`constructor(options?: Options): NamecheapWeb`](#constructoroptions-options-namecheapweb)
-  * [`_namecheap.Options`](#type-_namecheapoptions)
+- [`constructor(options?: WebOptions): NamecheapWeb`](#constructoroptions-weboptions-namecheapweb)
+  * [`WebOptions`](#type-weboptions)
 - [`async auth(username: string, password: string, phone?: string)`](#async-authusername-stringpassword-stringphone-string-void)
 - [`async static LOOKUP_IP(): string`](#async-static-lookup_ip-string)
 - [`async static WHOIS(domain): string`](#async-static-whoisdomain-string)
 - [`async static COUPON(): string`](#async-static-coupon-string)
 - [`async static SANDBOX_COUPON(): string`](#async-static-sandbox_coupon-string)
 - [`async getWhitelistedIPList(username: string, password: string, phone?: string): WhitelistedIP[]`](#async-getwhitelistediplistusername-stringpassword-stringphone-string-whitelistedip)
-  * [`_namecheap.WhitelistedIP`](#type-_namecheapwhitelistedip)
+  * [`WhitelistedIP`](#type-whitelistedip)
 - [`async whitelistIP(ip: string, name?: string)`](#async-whitelistipip-stringname-string-void)
 - [`async removeWhitelistedIP(name: string)`](#async-removewhitelistedipname-string-void)
 - [Copyright](#copyright)
@@ -45,11 +45,11 @@ import NamecheapWeb from '@rqt/namecheap-web'
   <img src="/.documentary/section-breaks/1.svg?sanitize=true">
 </a></p>
 
-## `constructor(`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): NamecheapWeb`
+## `constructor(`<br/>&nbsp;&nbsp;`options?: WebOptions,`<br/>`): NamecheapWeb`
 
 Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be specified in the options. To remember the session cookies on the local filesystem, the `readSession` parameter can be passed. On the production version, the session expires after 20 minutes, but can be renewed after 10 minutes of using an existing session.
 
-<strong><a name="type-_namecheapoptions">`_namecheap.Options`</a></strong>: Options for the web client.
+__<a name="type-weboptions">`WebOptions`</a>__: Options for the web client.
 <table>
  <thead><tr>
   <th>Name</th>
@@ -245,7 +245,7 @@ STEAMYDEALZ
 
 Get a list of white-listed IP addresses which can make API calls. The maximum of 20 IP addresses is allowed.
 
-<strong><a name="type-_namecheapwhitelistedip">`_namecheap.WhitelistedIP`</a></strong>: A white-listed IP which can be used for API calls.
+__<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which can be used for API calls.
 <table>
  <thead><tr>
   <th>Name</th>

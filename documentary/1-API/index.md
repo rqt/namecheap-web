@@ -10,7 +10,7 @@ import NamecheapWeb from '@rqt/namecheap-web'
 
 ```## constructor => NamecheapWeb
 [
-  ["options?", "Options"]
+  ["options?", "WebOptions"]
 ]
 ```
 
