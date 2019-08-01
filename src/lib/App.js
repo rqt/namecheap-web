@@ -1,16 +1,7 @@
 import { Session } from 'rqt'
 import { extractXsrf } from './'
 
-/**
- * @typedef {Object} Result
- * @property {boolean} __isError
- * @property {string} Message
- * @property {{ Message: String }[]} Errors
- * @property {strings[]} Warnings
- * @property {boolean} Success
- */
-
-/** @param {Result} res */
+/** @param {_namecheap.AjaxResult} res */
 const checkError = (res) => {
   if (res.__isError) {
     const err = new Error(res.Message)
@@ -46,6 +37,9 @@ export default class App {
   get session() {
     return this._session
   }
+  /**
+   * @param {string} body
+   */
   getToken(body) {
     const token = extractXsrf(body)
     return token
@@ -57,6 +51,10 @@ export default class App {
     const res = statusCode == 200
     return res
   }
+  /**
+   * @param {string} ipAddress
+   * @param {string} [name]
+   */
   async whitelistIP(
     ipAddress,
     name = `@rqt ${new Date().toLocaleString()}`.replace(/:/g, '-'),
@@ -73,6 +71,9 @@ export default class App {
   static get WHITELISTED_UPS() {
     return '/settings/tools/apiaccess/whitelisted-ips'
   }
+  /**
+   * @param {string} name
+   */
   async removeWhitelistedIP(name) {
     const token = await this.requestToken(App.WHITELISTED_UPS)
     const apiUrl = App.getApiUrl('RemoveIpAddresses')
@@ -84,6 +85,9 @@ export default class App {
   static getApiUrl(page) {
     return `/api/v1/ncpl/apiaccess/ui/${page}`
   }
+  /**
+   * @param {string} url
+   */
   async requestToken(url) {
     const body = await this.session.rqt(url)
     const token = this.getToken(body)
@@ -92,23 +96,34 @@ export default class App {
   async getWhitelistedIPList() {
     const token = await this.requestToken(App.WHITELISTED_UPS)
     const apiUrl = App.getApiUrl('GetWhitelistedIpAddresses')
-    const { IpAddresses } = await this.request(apiUrl, token)
-    const res = IpAddresses.map(({ Name, IpAddress, ModifyDate }) => ({
-      'Name': Name,
-      'IpAddress': IpAddress,
-      'ModifyDate': new Date(`${ModifyDate}Z`),
-    }))
+    const { 'IpAddresses': IpAddresses } = await this.request(apiUrl, token)
+    const res = IpAddresses
+      .map(({ 'Name': name, 'IpAddress': ip, 'ModifyDate': date }) => ({
+        'Name': name,
+        'IpAddress': ip,
+        'ModifyDate': new Date(`${date}Z`),
+      }))
     return res
   }
+  /**
+   * @param {string} url
+   * @param {string} token
+   * @param {!Object} data
+   */
   async request(url, token, data) {
-    const res = await this.session.jqt(url, {
+    const res = /** @type {_namecheap.AjaxResult} */ (await this.session.jqt(url, {
       data,
       headers: {
         'x-ncpl-rcsrf': token,
       },
-    })
+    }))
     checkError(res)
-    const { Data } = res
-    return Data
+    const { 'Data': d } = res
+    return d
   }
 }
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../../types').AjaxResult} _namecheap.AjaxResult
+ */

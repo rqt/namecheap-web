@@ -55,6 +55,11 @@ _namecheap.NamecheapWeb.COUPON = function() {}
  * @return {!Promise<string>}
  */
 _namecheap.NamecheapWeb.SANDBOX_COUPON = function() {}
+/**
+ * Get the public IP address using https://api.ipify.org.
+ * @return {!Promise<string>}
+ */
+_namecheap.NamecheapWeb.LOOKUP_IP = function() {}
 
 /* typal types/ips.xml externs */
 /**
@@ -99,3 +104,9 @@ _namecheap.Options.prototype.readSession
  * @type {string|undefined}
  */
 _namecheap.Options.prototype.sessionFile
+
+/* typal types/result.xml externs */
+/**
+ * @typedef {{ __isError: boolean, Message: string, Errors: !Array<{ Message: string }>, Warnings: !Array<string>, Success: boolean, Data: !Object<string, ?>, __type: string }}
+ */
+_namecheap.AjaxResult

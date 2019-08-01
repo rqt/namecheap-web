@@ -3,6 +3,9 @@
     <arg type="_namecheap.Options" name="options">
       Options for the web client.
     </arg>
+
+    <!-- instance API -->
+
     <fn async name="auth">
       <arg string name="username">The username to log in with.</arg>
       <arg string name="password">The password to enter.</arg>
@@ -26,6 +29,9 @@
       </arg>
       Remove the IP from the white-listed IPs by its name.
     </fn>
+
+    <!-- static methods -->
+
     <static async name="WHOIS" return="string">
       <arg string name="domain">
         The domain name to get information about.
@@ -38,5 +44,9 @@
     <static async name="SANDBOX_COUPON" return="string">
       Return the coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
     </static>
+    <static async name="LOOKUP_IP" return="string">
+      Get the public IP address using https://api.ipify.org.
+    </static>
+
   </interface>
 </types>

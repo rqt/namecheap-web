@@ -1,0 +1,11 @@
+<types ns="_namecheap">
+  <type name="AjaxResult">
+    <prop boolean name="__isError"/>
+    <prop string name="Message"/>
+    <prop type="!Array<{ Message: string }>" name="Errors"/>
+    <prop type="!Array<string>" name="Warnings"/>
+    <prop boolean name="Success"/>
+    <prop type="!Object<string, ?>" name="Data"/>
+    <prop string name="__type"/>
+  </type>
+</types>

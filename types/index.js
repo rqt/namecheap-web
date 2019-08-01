@@ -20,3 +20,18 @@ export {}
  * @prop {boolean} [readSession=false] Read and store the cookies for the session from the local file. Default `false`.
  * @prop {string} [sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
  */
+
+/* typal types/result.xml noSuppress */
+/**
+ * @typedef {_namecheap.AjaxResult} AjaxResult
+ */
+/**
+ * @typedef {Object} _namecheap.AjaxResult
+ * @prop {boolean} __isError
+ * @prop {string} Message
+ * @prop {!Array<{ Message: string }>} Errors
+ * @prop {!Array<string>} Warnings
+ * @prop {boolean} Success
+ * @prop {!Object<string, ?>} Data
+ * @prop {string} __type
+ */

@@ -66,7 +66,9 @@ enter last 3 digits`
   return value
 }
 
-
+/**
+ * @param {string} body
+ */
 export const extractXsrf = (body) => {
   const re = /<input type="hidden" id="x-ncpl-csrfvalue" value="(.+?)"/
   const res = re.exec(body)
