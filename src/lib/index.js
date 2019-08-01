@@ -37,7 +37,7 @@ const mapPhoneOptions = o => {
 
 const getColorOptions = (options) => {
   const n = options
-    .map(({ title }) => ` ${title}`)
+    .map(({ 'title': title }) => ` ${title}`)
     .map(mapPhoneOptions)
     .join('\n')
   return n
@@ -52,17 +52,17 @@ enter last 3 digits`
   const answer = await askSingle({
     text,
     async getDefault() {
-      return phone || options[0].last
+      return phone || options[0]['last']
     },
     validation(a) {
-      const p = options.some(({ last }) => last == a)
+      const p = options.some(({ 'last': last }) => last == a)
       if (!p) {
         throw new Error('Unknown number entered.')
       }
     },
   })
 
-  const { value } = options.find(({ last }) => last == answer)
+  const { value } = options.find(({ 'last': last }) => last == answer)
   return value
 }
 

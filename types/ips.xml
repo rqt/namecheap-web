@@ -1,12 +1,12 @@
-<types>
-  <type name="WhitelistedIP" desc="A white-listed IP which can be used for API calls.">
+<types namespace="_namecheap">
+  <type record name="WhitelistedIP" desc="A white-listed IP which can be used for API calls.">
     <prop string name="Name">
       The name of the IP.
     </prop>
     <prop string name="IpAddress" >
       The IP address.
     </prop>
-    <prop name="ModifyDate" type="Date">
+    <prop name="ModifyDate" type="!Date">
       The modification date.
     </prop>
   </type>

@@ -1,6 +1,5 @@
 import { Session } from 'rqt'
-import { extractXsrf } from '.'
-
+import { extractXsrf } from './'
 
 /**
  * @typedef {Object} Result
@@ -65,9 +64,9 @@ export default class App {
     const token = await this.requestToken(App.WHITELISTED_UPS)
     const apiUrl = App.getApiUrl('AddIpAddress')
     const data = {
-      accountPassword: this.password,
-      ipAddress,
-      name,
+      'accountPassword': this.password,
+      'ipAddress': ipAddress,
+      'name': name,
     }
     await this.request(apiUrl, token, data)
   }
@@ -78,8 +77,8 @@ export default class App {
     const token = await this.requestToken(App.WHITELISTED_UPS)
     const apiUrl = App.getApiUrl('RemoveIpAddresses')
     await this.request(apiUrl, token, {
-      accountPassword: this.password,
-      names: [name],
+      'accountPassword': this.password,
+      'names': [name],
     })
   }
   static getApiUrl(page) {
@@ -95,9 +94,9 @@ export default class App {
     const apiUrl = App.getApiUrl('GetWhitelistedIpAddresses')
     const { IpAddresses } = await this.request(apiUrl, token)
     const res = IpAddresses.map(({ Name, IpAddress, ModifyDate }) => ({
-      Name,
-      IpAddress,
-      ModifyDate: new Date(`${ModifyDate}Z`),
+      'Name': Name,
+      'IpAddress': IpAddress,
+      'ModifyDate': new Date(`${ModifyDate}Z`),
     }))
     return res
   }

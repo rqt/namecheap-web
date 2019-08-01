@@ -4,7 +4,7 @@ import { ok } from 'assert'
 import { askSingle } from 'reloquent'
 import {
   extractOptions, extractFormState, askForNumber,
-} from '.'
+} from './'
 
 const LOG = debuglog('@rqt/namecheap-web')
 
@@ -32,10 +32,9 @@ export default class Authenticator {
   }
   async obtainSession() {
     const u = '/cart/ajax/SessionHandler.ashx'
-    const { SessionKey } = await this.session.jqt(u)
-    if (!SessionKey) {
+    const { 'SessionKey': SessionKey } = await this.session.jqt(u)
+    if (!SessionKey)
       throw new Error(`Could not acquire the session key from ${this.session.host}${u}.`)
-    }
     LOG('Obtained a session key %s', SessionKey)
     this.SessionKey = SessionKey
   }
@@ -46,10 +45,10 @@ export default class Authenticator {
       headers: { location },
     } = await this.session.aqt(Authenticator.LOGIN_URL, {
       data: {
-        hidden_LoginPassword: '',
-        LoginUserName: this._username,
-        LoginPassword: this._password,
-        sessionEncryptValue: this.SessionKey,
+        'hidden_LoginPassword': '',
+        'LoginUserName': this._username,
+        'LoginPassword': this._password,
+        'sessionEncryptValue': this.SessionKey,
       },
       type: 'form',
     })
@@ -58,11 +57,9 @@ export default class Authenticator {
     } else if (statusCode == 301) {
       return this.session.cookies
     }
-    if (statusCode == 302 && location.includes(Authenticator.SECOND_AUTH_URL)) {
+    if (statusCode == 302 && location.includes(Authenticator.SECOND_AUTH_URL))
       await this.secondAuth()
-    } else {
-      throw new Error(`Unknown result (status code ${statusCode})`)
-    }
+    else throw new Error(`Unknown result (status code ${statusCode})`)
     const { cookies } = this.session
     return cookies
   }
@@ -88,17 +85,17 @@ export default class Authenticator {
     const fs = extractFormState(body)
     const data = {
       ...fs,
-      ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$ddlAuthorizeList: value,
-      ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$btnSendVerification: 'Proceed with Login',
+      'ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$ddlAuthorizeList': value,
+      'ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$btnSendVerification': 'Proceed with Login',
     }
     const body2 = await this.session.rqt(Authenticator.SECOND_AUTH_URL, {
       data,
       type: 'form',
     })
 
-    if (/You have reached the limit on the number.+/m.test(body2)) {
+    if (/You have reached the limit on the number.+/m.test(body2))
       throw new Error(body2.match(/You have reached the limit on the number.+/m)[0])
-    }
+
     ok(
       /We sent a message with the verification code/.test(body2),
       'Could not find the code entry section.',
@@ -116,8 +113,8 @@ export default class Authenticator {
     const fs = extractFormState(body)
     const data = {
       ...fs,
-      ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$txtAuthVerification: code,
-      ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$btnVerify: 'Submit Security Code',
+      'ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$txtAuthVerification': code,
+      'ctl00$ctl00$ctl00$ctl00$base_content$web_base_content$home_content$page_content_left$CntrlAuthorization$btnVerify': 'Submit Security Code',
     }
 
     const {

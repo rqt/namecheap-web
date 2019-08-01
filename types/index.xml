@@ -1,7 +1,29 @@
-<types>
-  <type name="Config" desc="Options for the program.">
-    <prop boolean name="shouldRun">
-      A boolean option.
-    </prop>
+<types ns="_namecheap">
+  <interface name="NamecheapWeb" desc="Performs namecheap.com operations via the web interface.">
+    <arg type="_namecheap.Options" name="options">
+      Options for the web client.
+    </arg>
+    <fn async name="auth">
+      <arg string name="username">The username to log in with.</arg>
+      <arg string name="password">The password to enter.</arg>
+      <arg string name="phone" opt>The phone number to select for 2-factor auth.</arg>
+      Authenticate the app and obtain the cookies.
+    </fn>
+    <fn async name="getWhitelistedIPList" return="!Array<!namecheap.WhitelistedIP>">
+      Get a list of white-listed IP addresses which can make API calls.
+    </fn>
+    <fn async name="whitelistIP">
+      <arg string name="ip">The IP to add.</arg>
+      <arg string name="name" opt>
+        The name to save the IP as. If not given, it is automatically generated as _rqt {date}_.
+      </arg>
+      Add an IP address to the white-listed IPs.
+    </fn>
+    <fn async name="removeWhitelistedIP">
+      <arg string name="name">
+        The name name of the saved IP to remove.
+      </arg>
+      Remove the IP from the white-listed IPs by its name.
+    </fn>
   </type>
 </types>

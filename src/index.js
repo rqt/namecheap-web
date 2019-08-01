@@ -9,9 +9,15 @@ import coupon from './coupon'
 
 const LOG = debuglog('@rqt/namecheap-web')
 
+/**
+ * @param {string} S
+ */
 const getHost = (S) => {
   return `https://www.${S ? 'sandbox.' : ''}namecheap.com`
 }
+/**
+ * @param {string} S
+ */
 const getApHost = (S) => {
   return `https://ap.www.${S ? 'sandbox.' : ''}namecheap.com`
 }
@@ -20,14 +26,15 @@ const USER_AGENT = 'Mozilla/5.0 (Node.js; @rqt/namecheap-web) https://github.com
 
 /**
  * An API to namecheap.com via the web interface, with an ability to log in using 2-factor Auth and check Whois.
+ * @implements {_namecheap.NamecheapWeb}
  */
 export default class NamecheapWeb {
   /**
    * Create an instance of a new client.
-   * @param {Options} options Options for the web client.
- * @param {boolean} [options.sandbox=false] Whether to use the `sandbox` version. Default `false`.
- * @param {boolean} [options.readSession=false] Read and store the cookies for the session from the local file. Default `false`.
- * @param {string} [options.sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
+   * @param {!_namecheap.Options} options Options for the web client.
+   * @param {boolean} [options.sandbox=false] Whether to use the `sandbox` version. Default `false`.
+   * @param {boolean} [options.readSession=false] Read and store the cookies for the session from the local file. Default `false`.
+   * @param {string} [options.sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
    */
   constructor(options = {}) {
     const {
@@ -61,7 +68,13 @@ export default class NamecheapWeb {
     return coupon(USER_AGENT, true)
   }
 
-  async auth(username, password, phone, force) {
+  /**
+   * @param {string} username
+   * @param {string} password
+   * @param {string} [phone]
+   * @param {boolean} [force]
+   */
+  async auth(username, password, phone, force = false) {
     let cookies
     if (this.settings.readSession && !force) {
       cookies = await getSession(this.settings.sessionFile)
@@ -119,16 +132,17 @@ export default class NamecheapWeb {
   }
   /**
    * Add an IP to white-listed IPs.
+   * @param {string} ip
+   * @param {string} name
    */
   async whitelistIP(ip, name) {
     await this._wrap(this._app.whitelistIP(ip, name))
   }
   /**
    * Get the list of all whitelisted IP addresses from https://ap.www.namecheap.com/settings/tools/apiaccess/whitelisted-ips.
-   * @return {Promise.<WhitelistedIP[]>}
    */
   async getWhitelistedIPList() {
-    const res = await this._wrap(this._app.getWhitelistedIPList())
+    const res = /** @type {<!Array<!_namecheap.WhitelistedIP>>} */ (await this._wrap(this._app.getWhitelistedIPList()))
     return res
   }
   /**
@@ -140,6 +154,7 @@ export default class NamecheapWeb {
   }
   /**
    * Remove the IP from the white-listed IPs by its name.
+   * @param {string} name
    */
   async removeWhitelistedIP(name) {
     await this._wrap(this._app.removeWhitelistedIP(name))
@@ -166,18 +181,11 @@ const saveSession = async (cookies, path) => {
   await bosom(path, cookies)
 }
 
-/* documentary types/options.xml */
 /**
- * @typedef {Object} Options Options for the web client.
- * @prop {boolean} [sandbox=false] Whether to use the `sandbox` version. Default `false`.
- * @prop {boolean} [readSession=false] Read and store the cookies for the session from the local file. Default `false`.
- * @prop {string} [sessionFile=".namecheap-web.json"] If reading session, indicates the file where to store cookies. Default `.namecheap-web.json`.
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').Options} _namecheap.Options
  */
-
-/* documentary types/ips.xml */
 /**
- * @typedef {Object} WhitelistedIP A white-listed IP which can be used for API calls.
- * @prop {string} Name The name of the IP.
- * @prop {string} IpAddress The IP address.
- * @prop {Date} ModifyDate The modification date.
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').WhitelistedIP} _namecheap.WhitelistedIP
  */

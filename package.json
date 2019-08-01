@@ -12,16 +12,19 @@
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc -o README.md",
     "b": "alamode src -o build -s",
-    "d": "NODE_DEBUG=doc doc src/index.js -g",
+    "d": "typal types/index.js src/index.js -c -t types/options.xml,types/ips.xml",
     "build": "yarn-s d b doc",
     "rec": "NODE_DEBUG=appshot appshot -T 23 -a Terminal -y 150 -f",
     "e": "node example",
+    "externs": "typal types/externs.js",
     "example/": "yarn e example/example.js",
     "example/whois.js": "yarn e example/whois.js"
   },
   "files": [
-    "build"
+    "build",
+    "types"
   ],
+  "externs": "types/externs.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/rqt/namecheap-web.git"
