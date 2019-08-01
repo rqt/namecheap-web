@@ -29,6 +29,8 @@ export default class Authenticator {
     this._password = password
     this._session = session
     this._phone = phone
+    /** @type {?string} */
+    this.SessionKey = null
   }
   async obtainSession() {
     const u = '/cart/ajax/SessionHandler.ashx'
@@ -132,7 +134,10 @@ export default class Authenticator {
     ok(/Object moved/.test(body2), 'Expected to have been redirected after sign-in.')
     return location2
   }
-  checkValidationError(body = this.body) {
+  /**
+   * @param {string} body
+   */
+  checkValidationError(body) {
     const validationErrorRe = /<strong class="title">Validation Error<\/strong>\s+<div>(.+?)<\/div>/
     const [, err] = validationErrorRe.exec(body) || []
     if (err) throw new Error(err.replace(/(<([^>]+)>)/ig, ''))

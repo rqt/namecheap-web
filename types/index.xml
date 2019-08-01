@@ -13,7 +13,7 @@
       <arg boolean name="force" opt>Try to log in even if session exists.</arg>
       Authenticate the app and obtain the cookies.
     </fn>
-    <fn async name="getWhitelistedIPList" return="!Array<!namecheap.WhitelistedIP>">
+    <fn async name="getWhitelistedIPList" return="!Array<!_namecheap.WhitelistedIP>">
       Get a list of white-listed IP addresses which can make API calls.
     </fn>
     <fn async name="whitelistIP">

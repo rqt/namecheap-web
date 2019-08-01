@@ -17,7 +17,6 @@ const checkError = (res) => {
 }
 
 export default class App {
-  /** @param {{cookies: *}} param */
   constructor({
     cookies,
     host,
@@ -108,7 +107,7 @@ export default class App {
   /**
    * @param {string} url
    * @param {string} token
-   * @param {!Object} data
+   * @param {!Object} [data]
    */
   async request(url, token, data) {
     const res = /** @type {_namecheap.AjaxResult} */ (await this.session.jqt(url, {

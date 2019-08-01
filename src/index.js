@@ -10,15 +10,15 @@ import coupon from './coupon'
 const LOG = debuglog('@rqt/namecheap-web')
 
 /**
- * @param {string} S
+ * @param {boolean} [S]
  */
-const getHost = (S) => {
+const getHost = (S = false) => {
   return `https://www.${S ? 'sandbox.' : ''}namecheap.com`
 }
 /**
- * @param {string} S
+ * @param {boolean} [S]
  */
-const getApHost = (S) => {
+const getApHost = (S = false) => {
   return `https://ap.www.${S ? 'sandbox.' : ''}namecheap.com`
 }
 
@@ -47,6 +47,8 @@ export default class NamecheapWeb {
       readSession,
       sessionFile,
     }
+    /** @type {App} */
+    this._app = null
   }
 
   /**
@@ -135,7 +137,7 @@ export default class NamecheapWeb {
   /**
    * Add an IP to white-listed IPs.
    * @param {string} ip
-   * @param {string} name
+   * @param {string} [name]
    */
   async whitelistIP(ip, name) {
     await this._wrap(this._app.whitelistIP(ip, name))
@@ -144,7 +146,7 @@ export default class NamecheapWeb {
    * Get the list of all whitelisted IP addresses from https://ap.www.namecheap.com/settings/tools/apiaccess/whitelisted-ips.
    */
   async getWhitelistedIPList() {
-    const res = /** @type {<!Array<!_namecheap.WhitelistedIP>>} */ (await this._wrap(this._app.getWhitelistedIPList()))
+    const res = /** @type {!Array<!_namecheap.WhitelistedIP>} */ (await this._wrap(this._app.getWhitelistedIPList()))
     return res
   }
   /**

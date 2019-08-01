@@ -23,7 +23,7 @@ _namecheap.NamecheapWeb = function(options) {}
 _namecheap.NamecheapWeb.prototype.auth = function(username, password, phone, force) {}
 /**
  * Get a list of white-listed IP addresses which can make API calls.
- * @return {!Promise<!Array<!namecheap.WhitelistedIP>>}
+ * @return {!Promise<!Array<!_namecheap.WhitelistedIP>>}
  */
 _namecheap.NamecheapWeb.prototype.getWhitelistedIPList = function() {}
 /**
