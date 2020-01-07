@@ -2,7 +2,7 @@ import rqt from 'rqt'
 
 /**
  * @param {string} USER_AGENT
- * @param {boolean=} sandbox
+ * @param {boolean} [sandbox=false]
  */
 const coupon = async (USER_AGENT, sandbox = false) => {
   const h = sandbox ? 'sandbox.' : ''
@@ -11,7 +11,7 @@ const coupon = async (USER_AGENT, sandbox = false) => {
       'User-Agent': USER_AGENT,
     },
   })
-  const res = /<small>Coupon Code<\/small>\s+.+couponCode">(.+)<\/span>/.exec(s)
+  const res = /"couponCode":"(.+?)"/.exec(s)
   if (!res) throw new Error('Could not find the coupon code.')
   return res[1]
 }

@@ -2,7 +2,7 @@
 
 # @rqt/namecheap-web
 
-[![npm version](https://badge.fury.io/js/%40rqt%2Fnamecheap-web.svg)](https://npmjs.org/package/@rqt/namecheap-web)
+[![npm version](https://badge.fury.io/js/%40rqt%2Fnamecheap-web.svg)](https://www.npmjs.com/package/@rqt/namecheap-web)
 
 `@rqt/namecheap-web` is an API to [`namecheap.com`](https://nameexpensive.com) via the web interface, with an ability to log in using 2-factor Auth, check Whois and retrieve a coupon code.
 
@@ -45,7 +45,7 @@ import NamecheapWeb from '@rqt/namecheap-web'
   <img src="/.documentary/section-breaks/1.svg?sanitize=true">
 </a></p>
 
-## `constructor(`<br/>&nbsp;&nbsp;`options?: WebOptions,`<br/>`): NamecheapWeb`
+## <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`options?: WebOptions,`<br/></sub><code>): <i>NamecheapWeb</i></code>
 
 Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be specified in the options. To remember the session cookies on the local filesystem, the `readSession` parameter can be passed. On the production version, the session expires after 20 minutes, but can be renewed after 10 minutes of using an existing session.
 
@@ -63,7 +63,9 @@ __<a name="type-weboptions">`WebOptions`</a>__: Options for the web client.
  </tr>
  <tr></tr>
  <tr>
-  <td>Whether to use the <code>sandbox</code> version.</td>
+  <td>
+   Whether to use the <code>sandbox</code> version.
+  </td>
  </tr>
  <tr>
   <td rowSpan="3" align="center">readSession</td>
@@ -72,7 +74,9 @@ __<a name="type-weboptions">`WebOptions`</a>__: Options for the web client.
  </tr>
  <tr></tr>
  <tr>
-  <td>Read and store the cookies for the session from the local file.</td>
+  <td>
+   Read and store the cookies for the session from the local file.
+  </td>
  </tr>
  <tr>
   <td rowSpan="3" align="center">sessionFile</td>
@@ -81,7 +85,9 @@ __<a name="type-weboptions">`WebOptions`</a>__: Options for the web client.
  </tr>
  <tr></tr>
  <tr>
-  <td>If reading session, indicates the file where to store cookies.</td>
+  <td>
+   If reading session, indicates the file where to store cookies.
+  </td>
  </tr>
 </table>
 
@@ -121,7 +127,7 @@ import bosom from 'bosom'
   <img src="/.documentary/section-breaks/2.svg?sanitize=true">
 </a></p>
 
-## `async auth(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): void`
+## <code>async <ins>auth</ins>(</code><sub><br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/></sub><code>): <i>void</i></code>
 
 Authenticate the app and obtain the cookies. If 2-factor authentication is enabled, it will also be carried out. The `phone` argument can be passed which is the last 3 digits of the phone used to receive the confirmation text. If it is not passed, a question will be asked via the CLI. The code should be then entered in the CLI as well.
 
@@ -158,32 +164,85 @@ import NamecheapWeb from '@rqt/namecheap-web'
 <summary>Show whois data</summary>
 
 ```
-Domain Name: TEST.ORG
+Domain Name: test.org
 Registry Domain ID: D380528-LROR
 Registrar WHOIS Server: whois.psi-usa.info
-Registrar URL: http://www.psi-usa.info
-Updated Date: 2019-07-27T01:31:37Z
+Registrar URL: https://www.psi-usa.info
+Updated Date: 2019-09-14T07:09:46Z
 Creation Date: 1997-07-27T04:00:00Z
-Registry Expiry Date: 2020-07-26T04:00:00Z
-Registrar Registration Expiration Date:
+Registrar Registration Expiration Date: 2020-10-15T16:17:16Z
 Registrar: PSI-USA, Inc. dba Domain Robot
 Registrar IANA ID: 151
 Registrar Abuse Contact Email: domain-abuse@psi-usa.info
 Registrar Abuse Contact Phone: +49.94159559482
-Reseller:
-Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
-Domain Status: autoRenewPeriod https://icann.org/epp#autoRenewPeriod
-Registrant Organization: TMT Teleservice GmbH &amp; Co.KG
+Domain Status: clientTransferProhibited https://www.icann.org/epp#clientTransferProhibited
+Registry Registrant ID: REDACTED FOR PRIVACY
+Registrant Name: REDACTED FOR PRIVACY
+Registrant Organization: TMT Teleservice GmbH & Co.KG
+Registrant Street: REDACTED FOR PRIVACY
+Registrant City: REDACTED FOR PRIVACY
 Registrant State/Province: Bayern
+Registrant Postal Code: REDACTED FOR PRIVACY
 Registrant Country: DE
-Name Server: NS0.TMT.DE
-Name Server: NS4.TMT.DE
-Name Server: NS3.TMT.DE
-Name Server: NS2.TMT.DE
-Name Server: NS1.TMT.DE
+Registrant Phone: REDACTED FOR PRIVACY
+Registrant Phone Ext: REDACTED FOR PRIVACY
+Registrant Fax: REDACTED FOR PRIVACY
+Registrant Fax Ext: REDACTED FOR PRIVACY
+Registrant Email: https://contact.domain-robot.org/test.org
+Registry Admin ID: REDACTED FOR PRIVACY
+Admin Name: REDACTED FOR PRIVACY
+Admin Organization: REDACTED FOR PRIVACY
+Admin Street: REDACTED FOR PRIVACY
+Admin City: REDACTED FOR PRIVACY
+Admin State/Province: REDACTED FOR PRIVACY
+Admin Postal Code: REDACTED FOR PRIVACY
+Admin Country: REDACTED FOR PRIVACY
+Admin Phone: REDACTED FOR PRIVACY
+Admin Phone Ext: REDACTED FOR PRIVACY
+Admin Fax: REDACTED FOR PRIVACY
+Admin Fax Ext: REDACTED FOR PRIVACY
+Admin Email: https://contact.domain-robot.org/test.org
+Registry Tech ID: REDACTED FOR PRIVACY
+Tech Name: REDACTED FOR PRIVACY
+Tech Organization: REDACTED FOR PRIVACY
+Tech Street: REDACTED FOR PRIVACY
+Tech City: REDACTED FOR PRIVACY
+Tech State/Province: REDACTED FOR PRIVACY
+Tech Postal Code: REDACTED FOR PRIVACY
+Tech Country: REDACTED FOR PRIVACY
+Tech Phone: REDACTED FOR PRIVACY
+Tech Phone Ext: REDACTED FOR PRIVACY
+Tech Fax: REDACTED FOR PRIVACY
+Tech Fax Ext: REDACTED FOR PRIVACY
+Tech Email: https://contact.domain-robot.org/test.org
+Name Server: ns0.tmt.de
+Name Server: ns2.tmt.de
+Name Server: ns3.tmt.de
+Name Server: ns4.tmt.de
+Name Server: ns1.tmt.de
 DNSSEC: unsigned
-URL of the ICANN Whois Inaccuracy Complaint Form https://www.icann.org/wicf/)
-&gt;&gt;&gt; Last update of WHOIS database: 2019-08-01T01:55:55Z
+URL of the ICANN WHOIS Data Problem Reporting System: https://wdprs.internic.net/
+>>> Last update of WHOIS database: 2020-01-07T21:39:43Z <<<
+
+For more information on Whois status codes, please visit https://www.icann.org/epp
+
+
+# Terms and conditions:
+#
+# The data in the WHOIS database of PSI-USA, Inc. is provided by
+# PSI-USA, Inc. for information purposes, and to assist persons in
+# obtaining information about or related to a domain name registration
+# record.  PSI-USA, Inc. does not guarantee its accuracy.  By submitting
+# a WHOIS query, you agree that you will use this data only for lawful
+# purposes and that, under no circumstances, you will use this data to
+#  (1) allow, enable, or otherwise support the transmission of mass
+#      unsolicited, commercial advertising or solicitations via E-mail
+#      (spam); or
+#  (2) enable high volume, automated, electronic processes that apply to
+#      PSI-USA, Inc. or its systems.
+# PSI-USA, Inc. reserves the right to modify these terms at any time.
+# By submitting this query, you agree to abide by this policy.
+#
 ```
 </details>
 
@@ -209,7 +268,7 @@ import NamecheapWeb from '@rqt/namecheap-web'
 })()
 ```
 ```
-STEAMYDEALZ
+TLDEALZ01
 ```
 
 <p align="center"><a href="#table-of-contents">
@@ -221,7 +280,6 @@ STEAMYDEALZ
 Returns this month's coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
 
 ```js
-/* yarn example/whois.js */
 import NamecheapWeb from '@rqt/namecheap-web'
 
 (async () => {
@@ -234,14 +292,14 @@ import NamecheapWeb from '@rqt/namecheap-web'
 })()
 ```
 ```
-STEAMYDEALZ
+TLDEALZ01
 ```
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/7.svg?sanitize=true">
 </a></p>
 
-## `async getWhitelistedIPList(`<br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/>`): WhitelistedIP[]`
+## <code>async <ins>getWhitelistedIPList</ins>(</code><sub><br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/></sub><code>): <i>WhitelistedIP[]</i></code>
 
 Get a list of white-listed IP addresses which can make API calls. The maximum of 20 IP addresses is allowed.
 
@@ -257,7 +315,9 @@ __<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which ca
  </tr>
  <tr></tr>
  <tr>
-  <td>The name of the IP.</td>
+  <td>
+   The name of the IP.
+  </td>
  </tr>
  <tr>
   <td rowSpan="3" align="center"><strong>IpAddress*</strong></td>
@@ -265,7 +325,9 @@ __<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which ca
  </tr>
  <tr></tr>
  <tr>
-  <td>The IP address.</td>
+  <td>
+   The IP address.
+  </td>
  </tr>
  <tr>
   <td rowSpan="3" align="center"><strong>ModifyDate*</strong></td>
@@ -273,7 +335,9 @@ __<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which ca
  </tr>
  <tr></tr>
  <tr>
-  <td>The modification date.</td>
+  <td>
+   The modification date.
+  </td>
  </tr>
 </table>
 
@@ -281,7 +345,7 @@ __<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which ca
   <img src="/.documentary/section-breaks/8.svg?sanitize=true">
 </a></p>
 
-## `async whitelistIP(`<br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name?: string,`<br/>`): void`
+## <code>async <ins>whitelistIP</ins>(</code><sub><br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name?: string,`<br/></sub><code>): <i>void</i></code>
 
 Add an IP address to the white-listed IPs. If name is not given, it is automatically generated as `rqt {date}`
 
@@ -289,7 +353,7 @@ Add an IP address to the white-listed IPs. If name is not given, it is automatic
   <img src="/.documentary/section-breaks/9.svg?sanitize=true">
 </a></p>
 
-## `async removeWhitelistedIP(`<br/>&nbsp;&nbsp;`name: string,`<br/>`): void`
+## <code>async <ins>removeWhitelistedIP</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/></sub><code>): <i>void</i></code>
 
 Remove the IP from the white-listed IPs by its name.
 
@@ -308,7 +372,7 @@ Remove the IP from the white-listed IPs by its name.
           alt="Art Deco">
       </a>
     </th>
-    <th>© <a href="https://artd.eco">Art Deco</a> for <a href="https://rqt.biz">Rqt</a> 2019</th>
+    <th>© <a href="https://artd.eco">Art Deco</a> for <a href="https://rqt.biz">Rqt</a> 2020</th>
     <th>
       <a href="https://www.technation.sucks" title="Tech Nation Visa">
         <img width="100" src="https://raw.githubusercontent.com/idiocc/cookies/master/wiki/arch4.jpg"

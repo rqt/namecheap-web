@@ -30,13 +30,13 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Example",
-      "program": "${workspaceFolder}/example/index.js",
+      "program": "${workspaceFolder}/node_modules/.bin/alanode",
       "env": {
         "NODE_DEBUG": "@rqt/namecheap-web,aqt",
       },
       "console": "integratedTerminal",
       "args": [
-        "example/example"
+        "example/sandbox-coupon"
       ],
       "skipFiles": [
         "<node_internals>/**/*.js"
