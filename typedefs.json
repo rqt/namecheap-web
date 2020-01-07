@@ -3,15 +3,21 @@
     "link": "https://github.com/rqt/namecheap-web#type-weboptions",
     "description": "Options for the web client."
   },
+  "_namecheap.NamecheapWeb": {
+    "link": "https://github.com/rqt/namecheap-web#type-namecheapweb",
+    "description": "Performs namecheap.com operations via the web interface."
+  },
   "_namecheap.WhitelistedIP": {
     "link": "https://github.com/rqt/namecheap-web#type-whitelistedip",
     "description": "A white-listed IP which can be used for API calls."
   },
   "undefinedconstructor": {
-    "link": "https://github.com/rqt/namecheap-web#constructoroptions-weboptions-namecheapweb"
+    "link": "https://github.com/rqt/namecheap-web#constructoroptions-weboptions-namecheapweb",
+    "description": "Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be specified in the options."
   },
   "undefinedauth": {
-    "link": "https://github.com/rqt/namecheap-web#async-authusername-stringpassword-stringphone-string-void"
+    "link": "https://github.com/rqt/namecheap-web#async-authusername-stringpassword-stringphone-stringforce-boolean-promise",
+    "description": "Authenticate the app and obtain the cookies."
   },
   "undefinedgetWhitelistedIPList": {
     "link": "https://github.com/rqt/namecheap-web#async-getwhitelistediplist-promisearray_namecheapwhitelistedip",
@@ -24,9 +30,5 @@
   "undefinedremoveWhitelistedIP": {
     "link": "https://github.com/rqt/namecheap-web#async-removewhitelistedipname-string-promise",
     "description": "Remove the IP from the white-listed IPs by its name."
-  },
-  "_namecheap.NamecheapWeb": {
-    "link": "https://github.com/rqt/namecheap-web#type-namecheapweb",
-    "description": "Performs namecheap.com operations via the web interface."
   }
 }

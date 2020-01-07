@@ -8,13 +8,9 @@ import NamecheapWeb from '@rqt/namecheap-web'
 
 %~%
 
-```## constructor => NamecheapWeb
-[
-  ["options?", "WebOptions"]
-]
-```
+<method name="NamecheapWeb.constructor">types/index.xml</method>
 
-Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be specified in the options. To remember the session cookies on the local filesystem, the `readSession` parameter can be passed. On the production version, the session expires after 20 minutes, but can be renewed after 10 minutes of using an existing session.
+To remember the session cookies on the local filesystem, the `readSession` parameter can be passed. On the production version, the session expires after 20 minutes, but can be renewed after 10 minutes of using an existing session.
 
 <typedef narrow>types/options.xml</typedef>
 

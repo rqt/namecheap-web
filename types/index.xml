@@ -1,8 +1,11 @@
 <types ns="_namecheap">
   <interface name="NamecheapWeb" desc="Performs namecheap.com operations via the web interface.">
-    <arg type="_namecheap.WebOptions" name="options" opt>
-      Options for the web client.
-    </arg>
+    <fn name="constructor">
+      <arg type="_namecheap.WebOptions" name="options" opt>
+        Options for the web client.
+      </arg>
+      Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be specified in the options.
+    </fn>
 
     <!-- instance API -->
 

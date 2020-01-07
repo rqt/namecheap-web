@@ -16,9 +16,9 @@ yarn add @rqt/namecheap-web
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`constructor(options?: WebOptions): NamecheapWeb`](#constructoroptions-weboptions-namecheapweb)
+- [`constructor(options=: WebOptions)`](#constructoroptions-weboptions-namecheapweb)
   * [`WebOptions`](#type-weboptions)
-- [`async auth(username: string, password: string, phone?: string)`](#async-authusername-stringpassword-stringphone-string-void)
+- [`async auth(username: string, password: string, phone=: string, force=: boolean): !Promise`](#async-authusername-stringpassword-stringphone-stringforce-boolean-promise)
 - [`async static LOOKUP_IP(): string`](#async-static-lookup_ip-string)
 - [`async static WHOIS(domain): string`](#async-static-whoisdomain-string)
 - [`async static COUPON(): string`](#async-static-coupon-string)
@@ -45,9 +45,13 @@ import NamecheapWeb from '@rqt/namecheap-web'
   <img src="/.documentary/section-breaks/1.svg?sanitize=true">
 </a></p>
 
-## <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`options?: WebOptions,`<br/></sub><code>): <i>NamecheapWeb</i></code>
+## <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`options=: WebOptions,`<br/></sub><code>): <i>NamecheapWeb</i></code>
 
-Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be specified in the options. To remember the session cookies on the local filesystem, the `readSession` parameter can be passed. On the production version, the session expires after 20 minutes, but can be renewed after 10 minutes of using an existing session.
+Create a new instance of the _NamecheapWeb_ class. The `sandbox` version can be specified in the options.
+
+ - <kbd>options</kbd> <em><code><a href="#type-weboptions" title="Options for the web client.">WebOptions</a></code></em> (optional): Options for the web client.
+
+To remember the session cookies on the local filesystem, the `readSession` parameter can be passed. On the production version, the session expires after 20 minutes, but can be renewed after 10 minutes of using an existing session.
 
 __<a name="type-weboptions">`WebOptions`</a>__: Options for the web client.
 <table>
@@ -127,9 +131,16 @@ import bosom from 'bosom'
   <img src="/.documentary/section-breaks/2.svg?sanitize=true">
 </a></p>
 
-## <code>async <ins>auth</ins>(</code><sub><br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/></sub><code>): <i>void</i></code>
+## <code>async <ins>auth</ins>(</code><sub><br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone=: string,`<br/>&nbsp;&nbsp;`force=: boolean,`<br/></sub><code>): <i>!Promise</i></code>
 
-Authenticate the app and obtain the cookies. If 2-factor authentication is enabled, it will also be carried out. The `phone` argument can be passed which is the last 3 digits of the phone used to receive the confirmation text. If it is not passed, a question will be asked via the CLI. The code should be then entered in the CLI as well.
+Authenticate the app and obtain the cookies.
+
+ - <kbd><strong>username*</strong></kbd> <em>`string`</em>: The username to log in with.
+ - <kbd><strong>password*</strong></kbd> <em>`string`</em>: The password to enter.
+ - <kbd>phone</kbd> <em>`string`</em> (optional): The phone number to select for 2-factor auth.
+ - <kbd>force</kbd> <em>`boolean`</em> (optional): Try to log in even if session exists.
+
+If 2-factor authentication is enabled, it will also be carried out. The `phone` argument can be passed which is the last 3 digits of the phone used to receive the confirmation text. If it is not passed, a question will be asked via the CLI. The code should be then entered in the CLI as well.
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/3.svg?sanitize=true">
