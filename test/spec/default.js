@@ -14,7 +14,7 @@ const T = {
 
     // 2. Read white-listed IPs.
     const ips = await nw.getWhitelistedIPList()
-    ok(Array.isArray(ips))
+    ok(Array.isArray(ips), 'Expected an array of IPs')
 
     // 3. Whitelist a new IP.
     const ip = await NamecheapWeb.LOOKUP_IP()

@@ -8,10 +8,32 @@
 var _namecheap = {}
 /**
  * Performs namecheap.com operations via the web interface.
+ * Constructor method.
  * @param {_namecheap.WebOptions=} [options] Options for the web client.
  * @interface
  */
 _namecheap.NamecheapWeb = function(options) {}
+/**
+ * Return the whois information about the domain.
+ * @param {string} domain The domain name to get information about.
+ * @return {!Promise<string>}
+ */
+_namecheap.NamecheapWeb.WHOIS = function(domain) {}
+/**
+ * Return the coupon from the https://www.namecheap.com/promos/coupons/ page.
+ * @return {!Promise<string>}
+ */
+_namecheap.NamecheapWeb.COUPON = function() {}
+/**
+ * Return the coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
+ * @return {!Promise<string>}
+ */
+_namecheap.NamecheapWeb.SANDBOX_COUPON = function() {}
+/**
+ * Get the public IP address using https://api.ipify.org.
+ * @return {!Promise<string>}
+ */
+_namecheap.NamecheapWeb.LOOKUP_IP = function() {}
 /**
  * Authenticate the app and obtain the cookies.
  * @param {string} username The username to log in with.
@@ -39,27 +61,6 @@ _namecheap.NamecheapWeb.prototype.whitelistIP = function(ip, name) {}
  * @return {!Promise}
  */
 _namecheap.NamecheapWeb.prototype.removeWhitelistedIP = function(name) {}
-/**
- * Return the whois information about the domain.
- * @param {string} domain The domain name to get information about.
- * @return {!Promise<string>}
- */
-_namecheap.NamecheapWeb.WHOIS = function(domain) {}
-/**
- * Return the coupon from the https://www.namecheap.com/promos/coupons/ page.
- * @return {!Promise<string>}
- */
-_namecheap.NamecheapWeb.COUPON = function() {}
-/**
- * Return the coupon from the https://www.sandbox.namecheap.com/promos/coupons/ page.
- * @return {!Promise<string>}
- */
-_namecheap.NamecheapWeb.SANDBOX_COUPON = function() {}
-/**
- * Get the public IP address using https://api.ipify.org.
- * @return {!Promise<string>}
- */
-_namecheap.NamecheapWeb.LOOKUP_IP = function() {}
 
 /* typal types/ips.xml externs */
 /**
@@ -90,12 +91,12 @@ _namecheap.WhitelistedIP.prototype.ModifyDate
  */
 _namecheap.WebOptions
 /**
- * Whether to use the `sandbox` version.
+ * Whether to use the `sandbox` version. Default `false`.
  * @type {boolean|undefined}
  */
 _namecheap.WebOptions.prototype.sandbox
 /**
- * Read and store the cookies for the session from the local file.
+ * Read and store the cookies for the session from the local file. Default `false`.
  * @type {boolean|undefined}
  */
 _namecheap.WebOptions.prototype.readSession
