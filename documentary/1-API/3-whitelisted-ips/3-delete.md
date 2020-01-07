@@ -1,9 +1,3 @@
-```## async removeWhitelistedIP
-[
-  ["name", "string"]
-]
-```
-
-Remove the IP from the white-listed IPs by its name.
+<method name="NamecheapWeb.removeWhitelistedIP">types/index.xml</method>
 
 %~%

@@ -1,0 +1,32 @@
+{
+  "_namecheap.WebOptions": {
+    "link": "https://github.com/rqt/namecheap-web#type-weboptions",
+    "description": "Options for the web client."
+  },
+  "_namecheap.WhitelistedIP": {
+    "link": "https://github.com/rqt/namecheap-web#type-whitelistedip",
+    "description": "A white-listed IP which can be used for API calls."
+  },
+  "undefinedconstructor": {
+    "link": "https://github.com/rqt/namecheap-web#constructoroptions-weboptions-namecheapweb"
+  },
+  "undefinedauth": {
+    "link": "https://github.com/rqt/namecheap-web#async-authusername-stringpassword-stringphone-string-void"
+  },
+  "undefinedgetWhitelistedIPList": {
+    "link": "https://github.com/rqt/namecheap-web#async-getwhitelistediplist-promisearray_namecheapwhitelistedip",
+    "description": "Get a list of white-listed IP addresses which can make API calls. The maximum of 20 IP addresses is allowed."
+  },
+  "undefinedwhitelistIP": {
+    "link": "https://github.com/rqt/namecheap-web#async-whitelistipip-stringname-string-promise",
+    "description": "Add an IP address to the white-listed IPs."
+  },
+  "undefinedremoveWhitelistedIP": {
+    "link": "https://github.com/rqt/namecheap-web#async-removewhitelistedipname-string-promise",
+    "description": "Remove the IP from the white-listed IPs by its name."
+  },
+  "_namecheap.NamecheapWeb": {
+    "link": "https://github.com/rqt/namecheap-web#type-namecheapweb",
+    "description": "Performs namecheap.com operations via the web interface."
+  }
+}

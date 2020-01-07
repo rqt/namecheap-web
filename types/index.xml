@@ -14,7 +14,7 @@
       Authenticate the app and obtain the cookies.
     </fn>
     <fn async name="getWhitelistedIPList" return="!Array<!_namecheap.WhitelistedIP>">
-      Get a list of white-listed IP addresses which can make API calls.
+      Get a list of white-listed IP addresses which can make API calls. The maximum of 20 IP addresses is allowed.
     </fn>
     <fn async name="whitelistIP">
       <arg string name="ip">The IP to add.</arg>

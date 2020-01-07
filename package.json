@@ -33,6 +33,7 @@
     "type": "git",
     "url": "git://github.com/rqt/namecheap-web.git"
   },
+  "typedefs": "typedefs.json",
   "keywords": [
     "namecheap-web",
     "rqt",

@@ -23,10 +23,10 @@ yarn add @rqt/namecheap-web
 - [`async static WHOIS(domain): string`](#async-static-whoisdomain-string)
 - [`async static COUPON(): string`](#async-static-coupon-string)
 - [`async static SANDBOX_COUPON(): string`](#async-static-sandbox_coupon-string)
-- [`async getWhitelistedIPList(username: string, password: string, phone?: string): WhitelistedIP[]`](#async-getwhitelistediplistusername-stringpassword-stringphone-string-whitelistedip)
+- [`async getWhitelistedIPList(): !Promise<!Array<!_namecheap.WhitelistedIP>>`](#async-getwhitelistediplist-promisearray_namecheapwhitelistedip)
   * [`WhitelistedIP`](#type-whitelistedip)
-- [`async whitelistIP(ip: string, name?: string)`](#async-whitelistipip-stringname-string-void)
-- [`async removeWhitelistedIP(name: string)`](#async-removewhitelistedipname-string-void)
+- [`async whitelistIP(ip: string, name=: string): !Promise`](#async-whitelistipip-stringname-string-promise)
+- [`async removeWhitelistedIP(name: string): !Promise`](#async-removewhitelistedipname-string-promise)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents">
@@ -222,7 +222,7 @@ Name Server: ns4.tmt.de
 Name Server: ns1.tmt.de
 DNSSEC: unsigned
 URL of the ICANN WHOIS Data Problem Reporting System: https://wdprs.internic.net/
->>> Last update of WHOIS database: 2020-01-07T21:39:43Z <<<
+>>> Last update of WHOIS database: 2020-01-07T22:34:28Z <<<
 
 For more information on Whois status codes, please visit https://www.icann.org/epp
 
@@ -299,7 +299,7 @@ TLDEALZ01
   <img src="/.documentary/section-breaks/7.svg?sanitize=true">
 </a></p>
 
-## <code>async <ins>getWhitelistedIPList</ins>(</code><sub><br/>&nbsp;&nbsp;`username: string,`<br/>&nbsp;&nbsp;`password: string,`<br/>&nbsp;&nbsp;`phone?: string,`<br/></sub><code>): <i>WhitelistedIP[]</i></code>
+## <code>async <ins>getWhitelistedIPList</ins>(): <i>!Promise<!Array<!_namecheap.WhitelistedIP>></i></code>
 
 Get a list of white-listed IP addresses which can make API calls. The maximum of 20 IP addresses is allowed.
 
@@ -345,17 +345,22 @@ __<a name="type-whitelistedip">`WhitelistedIP`</a>__: A white-listed IP which ca
   <img src="/.documentary/section-breaks/8.svg?sanitize=true">
 </a></p>
 
-## <code>async <ins>whitelistIP</ins>(</code><sub><br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name?: string,`<br/></sub><code>): <i>void</i></code>
+## <code>async <ins>whitelistIP</ins>(</code><sub><br/>&nbsp;&nbsp;`ip: string,`<br/>&nbsp;&nbsp;`name=: string,`<br/></sub><code>): <i>!Promise</i></code>
 
-Add an IP address to the white-listed IPs. If name is not given, it is automatically generated as `rqt {date}`
+Add an IP address to the white-listed IPs.
+
+ - <kbd><strong>ip*</strong></kbd> <em>`string`</em>: The IP to add.
+ - <kbd>name</kbd> <em>`string`</em> (optional): The name to save the IP as. If not given, it is automatically generated as _rqt {date}_.
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/9.svg?sanitize=true">
 </a></p>
 
-## <code>async <ins>removeWhitelistedIP</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/></sub><code>): <i>void</i></code>
+## <code>async <ins>removeWhitelistedIP</ins>(</code><sub><br/>&nbsp;&nbsp;`name: string,`<br/></sub><code>): <i>!Promise</i></code>
 
 Remove the IP from the white-listed IPs by its name.
+
+ - <kbd><strong>name*</strong></kbd> <em>`string`</em>: The name of the saved IP to remove.
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/10.svg?sanitize=true">

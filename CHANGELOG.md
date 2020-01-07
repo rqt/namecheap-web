@@ -1,3 +1,10 @@
+## 8 January 2020
+
+### [1.5.0](https://github.com/rqt/namecheap-web/compare/v1.4.2...v1.5.0)
+
+- [fix] Fix web changes, i.e. whois and coupons.
+- [doc] Add `typedefs.json`.
+
 ## 2 August 2019
 
 ### [1.4.2](https://github.com/rqt/namecheap-web/compare/v1.4.1...v1.4.2)
